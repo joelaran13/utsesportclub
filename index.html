@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTS Esports Club</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Apollo Tourney Typography: Syne + Space Grotesk + JetBrains Mono + Barlow Condensed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800;1,900&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        esports: ['Syne', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#040b16',
+                            card: '#0a1526',
+                            primary: '#2563eb',
+                            secondary: '#1e3a8a',
+                            accent: '#60a5fa'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #040b16;
+            color: #f3f4f6;
+            overflow-x: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .font-esports {
+            font-family: 'Syne', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .font-division {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+            letter-spacing: 0.01em;
+            display: inline-block;
+            transform: skewX(-14deg);
+            transform-origin: bottom left;
+        }
+
+        .text-glow-primary {
+            text-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
+        }
+
+        .btn-slant {
+            position: relative;
+            transform: skewX(-15deg);
+            display: inline-block;
+        }
+        .btn-slant-content {
+            transform: skewX(15deg);
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+            filter: brightness(1.2);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #040b16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
+        /* Smooth JS-driven Banner Slideshow */
+        .banner-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 8s ease-in-out;
+            transform: scale(1);
+            z-index: 0;
+        }
+        .banner-slide.active {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        /* Division Accordion Styles */
+        .division-accordion {
+            display: flex;
+            width: 100%;
+            height: 600px;
+        }
+        .division-card {
+            flex: 1;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            filter: grayscale(40%) brightness(0.6);
+        }
+        .division-card:hover {
+            flex: 2.2;
+            filter: grayscale(0%) brightness(1.1);
+        }
+        @media (max-width: 1024px) {
+            .division-card:hover { flex: 3; }
+        }
+        @media (max-width: 768px) {
+            .division-accordion {
+                flex-direction: column;
+                height: 1000px;
+            }
+        }
+
+        /* Futuristic Trading Card Styles & 3D Effect */
+        .player-card-wrapper {
+            perspective: 1000px;
+        }
+        .player-card {
+            transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            background: linear-gradient(145deg, rgba(20, 30, 50, 0.95), rgba(8, 14, 28, 0.98));
+            border: 2px solid rgba(234, 179, 8, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(234, 179, 8, 0.15);
+        }
+        .player-card:hover {
+            border-color: rgba(234, 179, 8, 0.8);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(234, 179, 8, 0.35);
+        }
+        .card-shine {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .player-card:hover .card-shine {
+            opacity: 1;
+        }
+
+        /* Carousel (coverflow) layout for player cards */
+        .player-carousel {
+            position: relative;
+            height: 520px;
+            perspective: 1400px;
+            overflow: hidden;
+            touch-action: pan-y;
+            user-select: none;
+        }
+        .player-carousel .player-card-wrapper {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 280px;
+            margin-left: -140px;
+            transition: transform 0.55s cubic-bezier(0.22, 0.8, 0.28, 1), opacity 0.55s ease, filter 0.55s ease;
+            will-change: transform, opacity;
+            cursor: pointer;
+        }
+        .player-carousel .player-card-wrapper:not(.is-active) .player-card {
+            pointer-events: none;
+        }
+        .player-carousel .player-card-wrapper:not(.is-active) {
+            filter: brightness(0.55) saturate(0.8);
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 30;
+        }
+        .carousel-dot {
+            width: 8px; height: 8px; border-radius: 9999px;
+            background: #374151; transition: all 0.3s ease; cursor: pointer;
+        }
+        .carousel-dot.active {
+            width: 24px; background: #eab308;
+            box-shadow: 0 0 10px rgba(234,179,8,0.6);
+        }
+
+        /* G2-Inspired Merch Grid & Apparel Mockup Transitions */
+        .merch-grid-bg {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .apparel-img {
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
+        }
+        .merch-card:hover .apparel-img {
+            transform: translateY(-6px) scale(1.06);
+        }
+        .color-swatch.active {
+            ring-width: 2px;
+            transform: scale(1.15);
+        }
+    </style>
+    <!-- 3D model viewer (loads the .glb logo in the hero) -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-sm bg-brand-dark/20 border-b border-brand-primary/10" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-esports text-2xl tracking-wider flex items-center gap-3">
+                        <img src="main.png" alt="UTS Swan Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBmaWxsPSJ3aGl0ZSI+PHBhdGggZD0iTTI1NiAzMkMxMzIuMyAzMiAzMiAxMzIuMyAzMiAyNTZsMTAwLjMgMjI0IDIyNCAyMjQgMjI0LTEwMC4zIDIyNC0yMjRTMzc5LjcgMzIgMjU2IDMyem0wIDQwMGMtOTcuMiAwLTE3Ni03OC44LTE3Ni0xNzZTMjUu octagon 40 80 256 80s176 78.8 176 176-78.8 176-176 176zIvPjwvc3ZnPg==';" class="w-12 h-12 object-contain drop-shadow-[0_0_10px_rgba(37,99,235,0.6)]">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#teams" class="text-gray-300 hover:text-brand-primary transition-colors font-medium text-sm uppercase tracking-widest">Teams</a>
+                    <a href="#activities" class="text-gray-300 hover:text-brand-primary transition-colors font-medium text-sm uppercase tracking-widest">Activities</a>
+                    <a href="#merch" class="text-gray-300 hover:text-brand-primary transition-colors font-medium text-sm uppercase tracking-widest flex items-center gap-1.5">
+                        Merch <span class="bg-brand-primary text-white text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-sm uppercase">Drop</span>
+                    </a>
+                    <a href="#committee" class="text-gray-300 hover:text-brand-primary transition-colors font-medium text-sm uppercase tracking-widest">Committee</a>
+                    <a href="#contact" class="text-gray-300 hover:text-brand-primary transition-colors font-medium text-sm uppercase tracking-widest">Contact</a>
+                    
+                    <a href="https://discord.com" target="_blank" class="btn-slant btn-primary px-6 py-2 rounded-sm cursor-pointer">
+                        <span class="btn-slant-content font-esports tracking-wide"><i class="fa-brands fa-discord mr-2"></i> Join Discord</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-brand-primary/20 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <a href="#teams" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-primary hover:bg-brand-dark rounded-md">Teams</a>
+                <a href="#activities" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-primary hover:bg-brand-dark rounded-md">Activities</a>
+                <a href="#merch" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-primary hover:bg-brand-dark rounded-md">Merch <span class="ml-1.5 bg-brand-primary text-white text-[10px] font-mono px-1.5 py-0.5 rounded">NEW</span></a>
+                <a href="#committee" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-primary hover:bg-brand-dark rounded-md">Committee</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-primary hover:bg-brand-dark rounded-md">Contact</a>
+                <a href="https://discord.com" target="_blank" class="block px-3 py-2 text-base font-medium text-brand-primary mt-4 border border-brand-primary rounded-md text-center">Join Discord</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        
+        <!-- Dynamic Background Slideshow Layers -->
+        <div class="banner-slide active" style="background-image: url('https://i.pinimg.com/originals/41/18/ef/4118efe4ef45befc56ff3fab487cb4b6.jpg');"></div>
+        <div class="banner-slide" style="background-image: url('https://images3.alphacoders.com/140/thumb-1920-1402807.jpg');"></div>
+        <div class="banner-slide" style="background-image: url('https://images4.alphacoders.com/129/1297076.jpg');"></div>
+        <div class="banner-slide" style="background-image: url('https://4kwallpapers.com/images/walls/thumbs_3t/26893.jpg');"></div>
+        
+        <!-- Overlay elements -->
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/85 to-brand-dark/40 z-10"></div>
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-secondary rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-pulse z-10"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-brand-primary rounded-full mix-blend-multiply filter blur-[128px] opacity-40 z-10"></div>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center w-full">
+            <div class="w-full md:w-2/3 text-center md:text-left">
+                <span class="text-brand-primary font-mono font-bold tracking-[0.15em] uppercase text-xs md:text-sm mb-4 block">Welcome to the official website of</span>
+                <h1 class="font-esports text-5xl md:text-7xl lg:text-8xl font-extrabold leading-none mb-6 uppercase">
+                    UTS <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary text-glow-primary">Esports Club</span>
+                </h1>
+                <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto md:mx-0">
+                    The Official Esports Club account for University of Technology Sarawak, Sibu. EST 2019
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#teams" class="btn-slant btn-primary px-8 py-4 rounded-sm">
+                        <span class="btn-slant-content font-esports text-base uppercase tracking-wider">Explore Teams</span>
+                    </a>
+                    <a href="#merch" class="btn-slant border border-white/30 px-8 py-4 rounded-sm hover:bg-white/10 transition-colors">
+                        <span class="btn-slant-content font-esports text-base uppercase tracking-wider text-white"><i class="fa-solid fa-shirt mr-2 text-brand-accent"></i> Official Merch</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Decorative Graphic -->
+            <div class="hidden md:flex w-full md:w-1/3 justify-center items-center mt-12 md:mt-0 relative z-20">
+                <div class="w-64 h-64 border-4 border-brand-secondary/30 rounded-full absolute animate-[spin_10s_linear_infinite]"></div>
+                <div class="w-48 h-48 border-4 border-brand-primary/30 rounded-full absolute animate-[spin_7s_linear_infinite_reverse]"></div>
+                
+                <!-- 2D fallback: shown until the 3D logo loads (or if the .glb file is missing) -->
+                <img id="heroLogo2D" src="main.png" alt="UTS Swan Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2360a5fa%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%232563eb%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points=%22100,14 176,58 176,142 100,186 24,142 24,58%22 fill=%22%23040b16%22 stroke=%22url(%23g)%22 stroke-width=%226%22/%3E%3Ctext x=%22100%22 y=%22106%22 text-anchor=%22middle%22 fill=%22%23ffffff%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2244%22 letter-spacing=%223%22%3EUTS%3C/text%3E%3Ctext x=%22100%22 y=%22134%22 text-anchor=%22middle%22 fill=%22%2360a5fa%22 font-family=%22monospace%22 font-weight=%22700%22 font-size=%2213%22 letter-spacing=%224%22%3EESPORTS%3C/text%3E%3C/svg%3E';" class="w-44 h-44 object-contain drop-shadow-[0_0_30px_rgba(0,240,255,0.8)] z-10">
+
+                <!-- 3D LOGO (src is assigned safely via JS when running on a valid HTTP/HTTPS origin) -->
+                <model-viewer id="heroLogo3D"
+                    alt="UTS Esports 3D logo"
+                    camera-orbit="0deg 78deg auto"
+                    interaction-prompt="none"
+                    shadow-intensity="0"
+                    exposure="0.35"
+                    environment-image="neutral"
+                    loading="eager"
+                    class="absolute opacity-0 pointer-events-none w-200 h-200 lg:w-96 lg:h-96 z-10"
+                    style="background: transparent; --poster-color: transparent;">
+                </model-viewer>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teams/Games Section (Accordion Style) -->
+    <section id="teams" class="bg-[#030812] relative overflow-hidden flex flex-col">
+        
+        <!-- Division Header Bar (RRQ-Inspired Overlapping Condensed Banner in UTS Blue) -->
+        <div class="bg-gradient-to-r from-[#60a5fa] via-[#2563eb] to-[#1e3a8a] py-4 sm:py-5 md:py-6 relative overflow-hidden flex items-center">
+            <div class="max-w-7xl mx-auto px-1 sm:px-1 lg:px-1 w-full flex items-center relative">
+                <h2 class="font-division text-4xl sm:text-5xl md:text-6xl text-[#060d1a] uppercase leading-none shrink-0 relative z-20 select-none">
+                    DIVISION
+                </h2>
+                <span class="font-division text-5xl sm:text-6xl md:text-7xl lg:text-[5.25rem] text-white/25 uppercase leading-none whitespace-nowrap -ml-3 sm:-ml-4 md:-ml-6 relative z-10 select-none pointer-events-none">
+                    UNIVERSITY OF TECHNOLOGY SARAWAK
+                </span>
+            </div>
+        </div>
+
+        <!-- Accordion Container -->
+        <div class="division-accordion w-full mx-auto">
+            
+            <!-- MLBB -->
+            <div class="division-card group border-r border-gray-800 last:border-r-0 cursor-pointer overflow-hidden relative">
+                <img src="https://wallpapers.com/images/featured/mobile-legends-v0u46grjbqc6h9ga.jpg" onerror="this.src='https://placehold.co/1920x1080/040b16/2563eb?text=MLBB'" alt="MLBB" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#020610] via-[#020610]/70 to-transparent group-hover:from-[#010409]/90 group-hover:via-[#010409]/60 group-hover:to-transparent transition-colors duration-500"></div>
+                
+                <div class="absolute inset-x-0 bottom-0 flex justify-center items-end pointer-events-none z-10 overflow-hidden h-[80%]">
+                    <img src="https://akmweb.youngjoygame.com/web/gms/image/e2c9c365b95a4de69fa98b2ce9712588.webp" 
+                         alt="MLBB Character" 
+                         class="max-h-full object-contain transform translate-y-full group-hover:translate-y-4 group-hover:scale-110 transition-all duration-500 ease-out drop-shadow-[0_15px_30px_rgba(0,100,255,0.4)]">
+                </div>
+
+                <div class="absolute top-6 right-6 bg-brand-dark/80 border border-brand-primary/50 w-10 h-10 flex items-center justify-center text-brand-primary z-20 shadow-lg transition-all group-hover:bg-brand-primary group-hover:text-white group-hover:border-brand-primary group-hover:shadow-[0_0_15px_rgba(37,99,235,0.6)]">
+                    <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+                </div>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-end pb-12 z-20 transition-transform duration-500 group-hover:-translate-y-4 px-4">
+                    <!-- Custom MLBB Logo + Clean Styled Emblem Fallback -->
+                    <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bc44799a-519b-4897-ac26-bdb823d86a91/ditxyij-03f35ff9-2859-4808-a896-0d0aaca26633.png/v1/fill/w_1280,h_480/mobile_legends_bang_bang_new_logo_png_by_eclipwsed_ditxyij-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDgwIiwicGF0aCI6Ii9mL2JjNDQ3OTlhLTUxOWItNDg5Ny1hYzI2LWJkYjgyM2Q4NmE5MS9kaXR4eWlqLTAzZjM1ZmY5LTI4NTktNDgwOC1hODk2LTBkMGFhY2EyNjYzMy5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.84-_-7JkpNNtcFRQLYxP5eDKdTW3Vk8g0ULgYbHSU-M" 
+                         alt="Mobile Legends: Bang Bang Logo" 
+                         onerror="this.onerror=null; this.outerHTML='<div class=\'mb-8 text-center select-none transition-transform duration-500 group-hover:scale-125 md:group-hover:scale-[1.35]\'><span class=\'font-mono text-[10px] tracking-[0.35em] text-yellow-400 uppercase block mb-1\'>5V5 MOBA</span><h3 class=\'font-esports text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-blue-100 to-yellow-300 tracking-wider uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]\'>MOBILE LEGENDS</h3><span class=\'font-esports text-sm md:text-base font-extrabold tracking-[0.3em] text-yellow-400 uppercase block mt-0.5\'>BANG BANG</span></div>';"
+                         class="h-24 md:h-28 w-auto max-w-[85%] object-contain mb-8 drop-shadow-[0_5px_12px_rgba(0,0,0,0.9)] transition-transform duration-500 group-hover:scale-125 md:group-hover:scale-[1.35] z-20">
+                    
+                    <button onclick="openPlayerModal('MLBB')" class="relative group/btn inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20 cursor-pointer">
+                        <div class="absolute inset-0 border-2 border-brand-primary transform skew-x-[-15deg] group-hover/btn:bg-brand-primary transition-colors duration-300"></div>
+                        <span class="relative z-10 px-8 py-3 block font-bold uppercase text-brand-primary group-hover/btn:text-white transition-colors duration-300 text-sm tracking-wider">
+                            View Teams (1 &amp; 2)
+                        </span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- PUBG MOBILE -->
+            <div class="division-card group border-r border-gray-800 last:border-r-0 cursor-pointer overflow-hidden relative">
+                <img src="https://images.wallpapersden.com/image/download/pubg-warrior-4k-city-sunset_bmdoaG6UmZqaraWkpJRobWllrWdma2U.jpg" onerror="this.src='https://placehold.co/1920x1080/040b16/2563eb?text=PUBG'" alt="PUBG Mobile" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#020610] via-[#020610]/70 to-transparent group-hover:from-[#010409]/90 group-hover:via-[#010409]/60 group-hover:to-transparent transition-colors duration-500"></div>
+                
+                <div class="absolute inset-x-0 bottom-0 flex justify-center items-end pointer-events-none z-10 overflow-hidden h-[80%]">
+                    <img src="https://www.pngarts.com/files/7/PUBG-Character-PNG-Transparent-Image.png" 
+                         alt="PUBG Character" 
+                         class="max-h-full object-contain transform translate-y-full group-hover:translate-y-4 group-hover:scale-110 transition-all duration-500 ease-out drop-shadow-[0_15px_30px_rgba(0,100,255,0.4)]">
+                </div>
+
+                <div class="absolute top-6 right-6 bg-brand-dark/80 border border-brand-primary/50 w-10 h-10 flex items-center justify-center text-brand-primary z-20 shadow-lg transition-all group-hover:bg-brand-primary group-hover:text-white group-hover:border-brand-primary group-hover:shadow-[0_0_15px_rgba(37,99,235,0.6)]">
+                    <i class="fa-solid fa-mobile-screen-button text-lg"></i>
+                </div>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-end pb-12 z-20 transition-transform duration-500 group-hover:-translate-y-4">
+                    <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/be59a4b8-8b3d-48c8-aa0c-226a9b247220/ddoehro-26145128-dffd-4cc6-a674-1279b420c490.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9iZTU5YTRiOC04YjNkLTQ4YzgtYWEwYy0yMjZhOWIyNDcyMjAvZGRvZWhyby0yNjE0NTEyOC1kZmZkLTRjYzYtYTY3NC0xMjc5YjQyMGM0OTAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ZL3iQPgMKaalI1Sfddg0cAkfracKbmUsOfbUqtAufrA" 
+                         alt="PUBG Mobile Logo" 
+                         onerror="this.onerror=null; this.outerHTML='<h3 class=\'font-esports text-4xl md:text-5xl text-white mb-8 tracking-wider text-center drop-shadow-lg\'>PUBG MOBILE</h3>';"
+                         class="w-44 md:w-56 h-auto mb-8 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-110 z-20">
+                    
+                    <button onclick="openPlayerModal('PUBG')" class="relative group/btn inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20 cursor-pointer">
+                        <div class="absolute inset-0 border-2 border-brand-primary transform skew-x-[-15deg] group-hover/btn:bg-brand-primary transition-colors duration-300"></div>
+                        <span class="relative z-10 px-8 py-3 block font-bold uppercase text-brand-primary group-hover/btn:text-white transition-colors duration-300 text-sm tracking-wider">
+                            View Players
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- VALORANT -->
+            <div class="division-card group border-r border-gray-800 last:border-r-0 cursor-pointer overflow-hidden relative">
+                <img src="https://images.wallpapersden.com/image/download/valorant-viper-art_bGhoZWmUmZqaraWkpJRobWllrWdoa24.jpg" onerror="this.src='https://placehold.co/1920x1080/040b16/2563eb?text=VALORANT'" alt="Valorant" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#020610] via-[#020610]/70 to-transparent group-hover:from-[#010409]/90 group-hover:via-[#010409]/60 group-hover:to-transparent transition-colors duration-500"></div>
+                
+                <div class="absolute inset-x-0 bottom-0 flex justify-center items-end pointer-events-none z-10 overflow-hidden h-[80%]">
+                    <img src="https://cdn.mos.cms.futurecdn.net/qqr5CvfeQKHprcvhAypxuH.png" 
+                         alt="Valorant Character" 
+                         class="max-h-full object-contain transform translate-y-full group-hover:translate-y-4 group-hover:scale-110 transition-all duration-500 ease-out drop-shadow-[0_15px_30px_rgba(0,100,255,0.4)]">
+                </div>
+
+                <div class="absolute top-6 right-6 bg-brand-dark/80 border border-brand-primary/50 w-10 h-10 flex items-center justify-center text-brand-primary z-20 shadow-lg transition-all group-hover:bg-brand-primary group-hover:text-white group-hover:border-brand-primary group-hover:shadow-[0_0_15px_rgba(37,99,235,0.6)]">
+                    <i class="fa-solid fa-desktop text-lg"></i>
+                </div>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-end pb-12 z-20 transition-transform duration-500 group-hover:-translate-y-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version.svg" 
+                         alt="Valorant Logo" 
+                         onerror="this.onerror=null; this.outerHTML='<h3 class=\'font-esports text-4xl md:text-5xl text-white mb-8 tracking-wider text-center drop-shadow-lg\'>VALORANT</h3>';"
+                         class="w-44 md:w-56 h-auto mb-8 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-110 z-20">
+                    
+                    <button onclick="openPlayerModal('VALORANT')" class="relative group/btn inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20 cursor-pointer">
+                        <div class="absolute inset-0 border-2 border-brand-primary transform skew-x-[-15deg] group-hover/btn:bg-brand-primary transition-colors duration-300"></div>
+                        <span class="relative z-10 px-8 py-3 block font-bold uppercase text-brand-primary group-hover/btn:text-white transition-colors duration-300 text-sm tracking-wider">
+                            View Players
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- APEX LEGENDS (Upcoming) -->
+            <div class="division-card group border-r border-gray-800 last:border-r-0 overflow-hidden cursor-default relative">
+                <img src="https://cdn1.epicgames.com/spt-assets/5dcd88f4e2094a698ebffa43438edc33/apex-legends-16kkx.jpg?resize=1&w=1280&h=720&quality=medium" onerror="this.src='https://placehold.co/1920x1080/040b16/2563eb?text=APEX'" alt="Apex Legends" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#020610] via-[#020610]/70 to-transparent group-hover:from-[#010409]/90 group-hover:via-[#010409]/60 group-hover:to-transparent transition-colors duration-500"></div>
+                
+                <div class="absolute top-6 right-6 bg-brand-dark/80 border border-gray-600 w-10 h-10 flex items-center justify-center text-gray-500 z-20 shadow-lg transition-all">
+                    <i class="fa-solid fa-desktop text-lg"></i>
+                </div>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-end pb-12 z-20 transition-transform duration-500 group-hover:-translate-y-4">
+                    <span class="text-brand-accent font-mono font-bold tracking-widest text-[10px] mb-3 uppercase border border-brand-accent px-3 py-1 bg-brand-dark/80 shadow-[0_0_10px_rgba(96,165,250,0.3)]">Upcoming</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Apex_Legends_logo.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" 
+                         alt="Apex Legends Logo" 
+                         onerror="this.onerror=null; this.outerHTML='<h3 class=\'font-esports text-4xl md:text-5xl text-gray-400 mb-8 tracking-wider text-center opacity-80 group-hover:opacity-100 transition-opacity\'>APEX LEGENDS</h3>';"
+                         class="w-32 md:w-40 h-auto mb-8 opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110 filter invert z-20">
+                    
+                    <div class="relative group/btn inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20">
+                        <div class="absolute inset-0 border-2 border-gray-600 transform skew-x-[-15deg] transition-colors duration-300"></div>
+                        <span class="relative z-10 px-8 py-3 block font-bold uppercase text-gray-400 transition-colors duration-300 text-sm tracking-wider cursor-not-allowed">
+                            Coming Soon
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Activities & Events Section (Powered by Google Sheets) -->
+    <section id="activities" class="py-16 md:py-24 bg-brand-dark relative border-t border-brand-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 md:mb-12">
+                <div>
+                    <div class="flex items-center gap-2 text-brand-accent font-mono font-bold uppercase tracking-widest text-xs mb-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span> Live Committee Updates
+                    </div>
+                    <h2 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase flex items-center gap-3">
+                        <i class="fa-solid fa-calendar-check text-brand-primary"></i> 
+                        Club Activities & Events
+                    </h2>
+                    <p class="text-gray-400 mt-2 text-sm md:text-base">Upcoming tournaments, campus LAN parties, workshops, and club announcements.</p>
+                </div>
+            </div>
+
+            <!-- Dynamic Activities Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="activities-container">
+                
+                <!-- Fallback Activity 1 -->
+                <div class="relative h-[420px] sm:h-[480px] md:h-[540px] rounded-2xl overflow-hidden border border-white/10 flex flex-col justify-between p-5 sm:p-6 md:p-8 group cursor-pointer transition-all duration-500 hover:border-brand-primary/60">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop" alt="WE WIN" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/70 z-10 group-hover:from-black/90 transition-colors"></div>
+                    
+                    <div class="relative z-20">
+                        <p class="text-gray-300 text-xs sm:text-sm font-medium mb-1 drop-shadow">The leading esports organisation in Sibu</p>
+                        <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight leading-none drop-shadow-md">WE COMPETE</h3>
+                    </div>
+
+                    <div class="relative z-20 flex flex-wrap sm:flex-nowrap justify-between items-end gap-3">
+                        <a href="https://linktr.ee/utsesportsclub" target="_blank" class="bg-white text-gray-950 font-bold text-xs sm:text-sm px-5 py-2.5 sm:px-6 sm:py-3 rounded-md hover:bg-brand-primary hover:text-white transition-all duration-300 shadow-lg text-center">
+                            More Info
+                        </a>
+                        <span class="text-[11px] sm:text-xs font-mono text-gray-400 bg-black/50 backdrop-blur-md px-3 py-1 rounded-md border border-gray-700 shrink-0">Dec 15, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Fallback Activity 2 -->
+                <div class="relative h-[420px] sm:h-[480px] md:h-[540px] rounded-2xl overflow-hidden border border-white/10 flex flex-col justify-between p-5 sm:p-6 md:p-8 group cursor-pointer transition-all duration-500 hover:border-brand-primary/60">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop" alt="WE ENTERTAIN" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/70 z-10 group-hover:from-black/90 transition-colors"></div>
+                    
+                    <div class="relative z-20">
+                        <p class="text-gray-300 text-xs sm:text-sm font-medium mb-1 drop-shadow">The Royal Blue & Swan Family</p>
+                        <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight leading-none drop-shadow-md">WE CONNECT</h3>
+                    </div>
+
+                    <div class="relative z-20 flex flex-wrap sm:flex-nowrap justify-between items-end gap-3">
+                        <a href="https://discord.com" target="_blank" class="bg-white text-gray-950 font-bold text-xs sm:text-sm px-5 py-2.5 sm:px-6 sm:py-3 rounded-md hover:bg-brand-primary hover:text-white transition-all duration-300 shadow-lg text-center">
+                            More Info
+                        </a>
+                        <span class="text-[11px] sm:text-xs font-mono text-gray-400 bg-black/50 backdrop-blur-md px-3 py-1 rounded-md border border-gray-700 shrink-0">Dec 20, 2026</span>
+                    </div>
+                </div>
+
+                <!-- Fallback Activity 3 -->
+                <div class="relative h-[420px] sm:h-[480px] md:h-[540px] rounded-2xl overflow-hidden border border-white/10 flex flex-col justify-between p-5 sm:p-6 md:p-8 group cursor-pointer transition-all duration-500 hover:border-brand-primary/60">
+                    <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=2070&auto=format&fit=crop" alt="WE INNOVATE" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/70 z-10 group-hover:from-black/90 transition-colors"></div>
+                    
+                    <div class="relative z-20">
+                        <p class="text-gray-300 text-xs sm:text-sm font-medium mb-1 drop-shadow">We stay ahead of the curve</p>
+                        <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight leading-none drop-shadow-md">WE INNOVATE</h3>
+                    </div>
+
+                    <div class="relative z-20 flex flex-wrap sm:flex-nowrap justify-between items-end gap-3">
+                        <a href="https://linktr.ee/utsesportsclub" target="_blank" class="bg-white text-gray-950 font-bold text-xs sm:text-sm px-5 py-2.5 sm:px-6 sm:py-3 rounded-md hover:bg-brand-primary hover:text-white transition-all duration-300 shadow-lg text-center">
+                            Read More
+                        </a>
+                        <span class="text-[11px] sm:text-xs font-mono text-gray-400 bg-black/50 backdrop-blur-md px-3 py-1 rounded-md border border-gray-700 shrink-0">Jan 05, 2027</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- G2 ESPORTS-INSPIRED OFFICIAL MERCH SECTION               -->
+    <!-- ======================================================== -->
+    <section id="merch" class="py-20 md:py-28 bg-[#02060f] relative border-t border-white/10 overflow-hidden">
+        <!-- G2-style sharp geometric background accent -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-primary/10 via-transparent to-transparent pointer-events-none"></div>
+        <div class="absolute -left-24 top-1/3 w-72 h-72 bg-brand-primary/15 rounded-full blur-[110px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header (G2 Editorial Pro-Shop Style) -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6 border-b border-white/10 pb-8">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-white/15 px-3 py-1 rounded-sm mb-3">
+                        <span class="w-2 h-2 bg-brand-primary inline-block"></span>
+                        <span class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-gray-300">UTS // PRO APPAREL COLLECTION 2026</span>
+                    </div>
+                    <h2 class="font-esports text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase text-white leading-none">
+                        OFFICIAL <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">MERCH</span>
+                    </h2>
+                </div>
+                <div class="max-w-md">
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Engineered for campus tournaments and everyday streetwear. Switch between colorways below and reserve directly to our Google Sheet order log.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 3-Column Merch Grid: Pro Jersey, Graphic T-Shirt (2 Colors), Street Era Rawline Trucker Jacket (2 Colors) -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- 1. OFFICIAL PRO JERSEY -->
+                <div class="merch-card bg-[#070f1d] border border-white/10 hover:border-brand-primary/70 rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-2xl">
+                    <div>
+                        <!-- Product Visual Stage -->
+                        <div class="relative h-80 merch-grid-bg bg-gradient-to-b from-[#0d1b33] to-[#060d1a] flex items-center justify-center p-4 overflow-hidden border-b border-white/10">
+                            <span class="absolute top-4 left-4 bg-brand-primary text-white font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm z-20">
+                                PRO KIT // 2026
+                            </span>
+                            <span class="absolute top-4 right-4 font-mono text-xs text-gray-400 bg-black/50 border border-white/10 px-2.5 py-1 rounded-sm z-20">
+                                CUSTOM IGN
+                            </span>
+
+                            <!-- Pro Jersey Product Image -->
+                            <img src="https://images.unsplash.com/photo-1580087256394-dc596e1c8f4f?q=80&w=900&auto=format&fit=crop"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x600/0d1b33/60a5fa?text=UTS+PRO+JERSEY';"
+                                 alt="UTS 2026 Pro Team Jersey"
+                                 class="apparel-img w-56 h-56 object-cover rounded-xl border border-white/10 shadow-[0_20px_25px_rgba(0,0,0,0.85)]">
+
+                            <div class="absolute bottom-3 left-4 right-4 flex justify-between items-center text-[11px] font-mono text-gray-400">
+                                <span>COLOR: ROYAL COBALT</span>
+                                <span>MICROFIBER DRY-FIT</span>
+                            </div>
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="p-6">
+                            <div class="flex justify-between items-start gap-4 mb-2">
+                                <div>
+                                    <span class="font-mono text-xs text-brand-accent uppercase tracking-wider block mb-1">Official Matchwear</span>
+                                    <h3 class="font-esports text-2xl font-extrabold text-white uppercase">2026 Pro Team Jersey</h3>
+                                </div>
+                                <span class="font-esports text-2xl font-extrabold text-white">RM 89</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-5">
+                                Breathable sublimation esports jersey with embroidered UTS Swan crest and optional back IGN print.
+                            </p>
+
+                            <!-- Color Display (Signature Kit) -->
+                            <div class="mb-5">
+                                <span class="font-mono text-[11px] text-gray-400 uppercase tracking-wider block mb-2">Colorway: <strong class="text-white">Royal Cobalt / Obsidian</strong></span>
+                                <div class="flex items-center gap-3">
+                                    <span class="w-7 h-7 rounded-full bg-gradient-to-tr from-[#0f2347] to-[#2563eb] border-2 border-white ring-2 ring-brand-primary" title="Royal Cobalt"></span>
+                                </div>
+                            </div>
+
+                            <!-- Size Selector -->
+                            <div>
+                                <span class="font-mono text-[11px] text-gray-400 uppercase tracking-wider block mb-2">Select Size</span>
+                                <div class="grid grid-cols-5 gap-2" data-size-group="jersey">
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">S</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-brand-primary bg-brand-primary text-white transition-colors">M</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">L</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">XL</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">2XL</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <button onclick="openMerchOrder('2026 Pro Team Jersey', 'RM 89', 'Royal Cobalt / Obsidian', 'jersey', true)" class="w-full py-3.5 bg-white text-gray-950 hover:bg-brand-primary hover:text-white font-esports font-extrabold text-sm uppercase tracking-wider rounded transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer">
+                            <span>Pre-Order Jersey</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. OVERSIZED GRAPHIC T-SHIRT (2 SELECTABLE COLORS) -->
+                <div class="merch-card bg-[#070f1d] border border-white/10 hover:border-brand-primary/70 rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-2xl" id="card-tshirt">
+                    <div>
+                        <!-- Product Visual Stage -->
+                        <div id="tshirt-stage" class="relative h-80 merch-grid-bg bg-gradient-to-b from-[#111827] to-[#060d1a] flex items-center justify-center p-4 overflow-hidden border-b border-white/10 transition-colors duration-500">
+                            <span class="absolute top-4 left-4 bg-white text-gray-950 font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm z-20">
+                                STREETWEAR // 2 COLORS
+                            </span>
+                            <span id="tshirt-badge" class="absolute top-4 right-4 font-mono text-xs text-brand-accent bg-black/60 border border-brand-primary/40 px-2.5 py-1 rounded-sm z-20">
+                                240GSM COTTON
+                            </span>
+
+                            <!-- T-Shirt Product Image -->
+                            <img id="tshirt-img"
+                                 src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=900&auto=format&fit=crop"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x600/111827/ffffff?text=UTS+HEAVY+TEE';"
+                                 alt="UTS Swan Heavy Tee"
+                                 class="apparel-img w-56 h-56 object-cover rounded-xl border border-white/10 shadow-[0_20px_25px_rgba(0,0,0,0.85)]">
+
+                            <div class="absolute bottom-3 left-4 right-4 flex justify-between items-center text-[11px] font-mono text-gray-400">
+                                <span id="tshirt-stage-label">VARIANT: OBSIDIAN BLACK</span>
+                                <span>BOXY FIT</span>
+                            </div>
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="p-6">
+                            <div class="flex justify-between items-start gap-4 mb-2">
+                                <div>
+                                    <span class="font-mono text-xs text-brand-accent uppercase tracking-wider block mb-1">Lifestyle Tee</span>
+                                    <h3 class="font-esports text-2xl font-extrabold text-white uppercase">UTS Swan Heavy Tee</h3>
+                                </div>
+                                <span class="font-esports text-2xl font-extrabold text-white">RM 49</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-5">
+                                Heavyweight 240GSM combed cotton streetwear tee with bold front geometric Swan emblem and back roster print.
+                            </p>
+
+                            <!-- 2-Color Interactive Switcher -->
+                            <div class="mb-5">
+                                <span class="font-mono text-[11px] text-gray-400 uppercase tracking-wider block mb-2">
+                                    Colorway: <strong id="tshirt-color-name" class="text-white">Obsidian Black</strong>
+                                </span>
+                                <div class="flex items-center gap-3">
+                                    <button type="button" onclick="setTshirtColor('black')" id="btn-tshirt-black" class="color-swatch active w-8 h-8 rounded-full bg-[#111827] border-2 border-white ring-brand-primary transition-all cursor-pointer" title="Obsidian Black"></button>
+                                    <button type="button" onclick="setTshirtColor('white')" id="btn-tshirt-white" class="color-swatch w-8 h-8 rounded-full bg-[#f8fafc] border-2 border-gray-400 ring-brand-primary transition-all cursor-pointer" title="Arctic White"></button>
+                                </div>
+                            </div>
+
+                            <!-- Size Selector -->
+                            <div>
+                                <span class="font-mono text-[11px] text-gray-400 uppercase tracking-wider block mb-2">Select Size</span>
+                                <div class="grid grid-cols-5 gap-2" data-size-group="tshirt">
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">S</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-brand-primary bg-brand-primary text-white transition-colors">M</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">L</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">XL</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">2XL</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <button onclick="openMerchOrder('UTS Swan Heavy Tee', 'RM 49', document.getElementById('tshirt-color-name').innerText, 'tshirt', false)" class="w-full py-3.5 bg-white text-gray-950 hover:bg-brand-primary hover:text-white font-esports font-extrabold text-sm uppercase tracking-wider rounded transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer">
+                            <span>Pre-Order T-Shirt</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. STREET ERA RAWLINE TRUCKER JACKET - 157 (HIGH CULTURED FEATURED IMAGE) -->
+                <div class="merch-card bg-[#070f1d] border border-white/10 hover:border-brand-primary/70 rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-2xl" id="card-jacket">
+                    <div>
+                        <!-- Product Visual Stage -->
+                        <div id="jacket-stage" class="relative h-80 merch-grid-bg bg-gradient-to-b from-[#141821] to-[#060d1a] flex items-center justify-center p-4 overflow-hidden border-b border-white/10 transition-colors duration-500">
+                            <span class="absolute top-4 left-4 bg-yellow-500 text-black font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm z-20">
+                                NEW DROP // 2 COLORS
+                            </span>
+                            <span class="absolute top-4 right-4 font-mono text-xs text-gray-300 bg-black/60 border border-white/10 px-2.5 py-1 rounded-sm z-20">
+                                330GSM TERRY
+                            </span>
+
+                            <!-- High Cultured Street Era Rawline Trucker Jacket - 157 Image -->
+                            <img id="jacket-img"
+                                 src="https://www.highcultured.my/cdn/shop/files/0456d2654f3177bb616afc46c356849e.jpg?v=1792749942"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x600/141821/ffffff?text=RAWLINE+TRUCKER+JACKET';"
+                                 alt="Street Era Rawline Trucker Jacket - 157"
+                                 class="apparel-img w-56 h-56 object-cover rounded-xl border border-white/10 shadow-[0_20px_25px_rgba(0,0,0,0.85)]">
+
+                            <div class="absolute bottom-3 left-4 right-4 flex justify-between items-center text-[11px] font-mono text-gray-400">
+                                <span id="jacket-stage-label">VARIANT: BLACK</span>
+                                <span>TRUCKER JACKET</span>
+                            </div>
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="p-6">
+                            <div class="flex justify-between items-start gap-4 mb-2">
+                                <div>
+                                    <span class="font-mono text-xs text-brand-accent uppercase tracking-wider block mb-1">High Cultured // Outerwear</span>
+                                    <h3 class="font-esports text-2xl font-extrabold text-white uppercase">Street Era Rawline Trucker Jacket</h3>
+                                </div>
+                                <span class="font-esports text-2xl font-extrabold text-white shrink-0">RM 199.90</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-5">
+                                100% French Terry Cotton (330gsm) industrial trucker jacket with front &amp; back embroidery, overlock stitching, and rubber badge.
+                            </p>
+
+                            <!-- 2-Color Interactive Switcher (Black & Grey) -->
+                            <div class="mb-5">
+                                <span class="font-mono text-[11px] text-gray-400 uppercase tracking-wider block mb-2">
+                                    Colorway: <strong id="jacket-color-name" class="text-white">Black</strong>
+                                </span>
+                                <div class="flex items-center gap-3">
+                                    <button type="button" onclick="setJacketColor('black')" id="btn-jacket-black" class="color-swatch active w-8 h-8 rounded-full bg-[#111111] border-2 border-white ring-brand-primary transition-all cursor-pointer" title="Black"></button>
+                                    <button type="button" onclick="setJacketColor('grey')" id="btn-jacket-grey" class="color-swatch w-8 h-8 rounded-full bg-[#6b7280] border-2 border-gray-400 ring-brand-primary transition-all cursor-pointer" title="Grey"></button>
+                                </div>
+                            </div>
+
+                            <!-- Size Selector -->
+                            <div>
+                                <span class="font-mono text-[11px] text-gray-400 uppercase tracking-wider block mb-2">Select Size</span>
+                                <div class="grid grid-cols-5 gap-2" data-size-group="jacket">
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">S</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-brand-primary bg-brand-primary text-white transition-colors">M</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">L</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">XL</button>
+                                    <button type="button" onclick="selectSize(this)" class="size-pill py-1.5 text-xs font-mono font-bold rounded border border-white/15 text-gray-300 hover:border-brand-primary transition-colors">2XL</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <button onclick="openMerchOrder('Street Era Rawline Trucker Jacket - 157', 'RM 199.90', document.getElementById('jacket-color-name').innerText, 'jacket', false)" class="w-full py-3.5 bg-white text-gray-950 hover:bg-brand-primary hover:text-white font-esports font-extrabold text-sm uppercase tracking-wider rounded transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer">
+                            <span>Pre-Order Jacket</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXCO Committee & Club Members Section -->
+    <section id="committee" class="py-16 md:py-24 bg-[#030710] relative border-t border-brand-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-accent font-mono font-bold tracking-[0.2em] uppercase text-xs sm:text-sm block mb-2">UTS Esports Board of Directors</span>
+                <h2 class="font-esports text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-wider text-white">
+                    25/26 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">EXCO Committee</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-brand-primary to-transparent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Committee Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                
+                <!-- President -->
+                <div class="bg-brand-card/90 border border-brand-primary/20 rounded-xl overflow-hidden group hover:border-brand-primary transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.35)] flex flex-col">
+                    <div class="relative pt-[100%] bg-gradient-to-b from-brand-secondary/30 to-brand-card overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-gray-500 group-hover:scale-105 transition-transform duration-500">
+                            <i class="fa-solid fa-user text-6xl text-brand-primary/40"></i>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-brand-primary/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">
+                            BELLA
+                        </span>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col justify-between border-t border-brand-primary/10 bg-brand-card">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block mb-1">President</span>
+                            <h3 class="font-esports text-xl font-bold text-white tracking-wide leading-snug">As-Salsabella Binti Musa</h3>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                            <span class="font-mono text-gray-400">BSA25090020</span>
+                            <span class="text-brand-primary font-semibold">25/26 EXCO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vice President -->
+                <div class="bg-brand-card/90 border border-brand-primary/20 rounded-xl overflow-hidden group hover:border-brand-primary transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.35)] flex flex-col">
+                    <div class="relative pt-[100%] bg-gradient-to-b from-brand-secondary/30 to-brand-card overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-gray-500 group-hover:scale-105 transition-transform duration-500">
+                            <i class="fa-solid fa-user text-6xl text-brand-primary/40"></i>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-brand-primary/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">
+                            KIOZ
+                        </span>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col justify-between border-t border-brand-primary/10 bg-brand-card">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block mb-1">Vice President</span>
+                            <h3 class="font-esports text-xl font-bold text-white tracking-wide leading-snug">Wan Amiruddin Bin Wan Shadon</h3>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                            <span class="font-mono text-gray-400">BSP25090010</span>
+                            <span class="text-brand-primary font-semibold">25/26 EXCO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secretary -->
+                <div class="bg-brand-card/90 border border-brand-primary/20 rounded-xl overflow-hidden group hover:border-brand-primary transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.35)] flex flex-col">
+                    <div class="relative pt-[100%] bg-gradient-to-b from-brand-secondary/30 to-brand-card overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-gray-500 group-hover:scale-105 transition-transform duration-500">
+                            <i class="fa-solid fa-user text-6xl text-brand-primary/40"></i>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-brand-primary/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">
+                            ELLYRA
+                        </span>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col justify-between border-t border-brand-primary/10 bg-brand-card">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block mb-1">Secretary</span>
+                            <h3 class="font-esports text-xl font-bold text-white tracking-wide leading-snug">Nurul Khalisah Binti Shukeri</h3>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                            <span class="font-mono text-gray-400">BBA25020035</span>
+                            <span class="text-brand-primary font-semibold">25/26 EXCO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Treasurer -->
+                <div class="bg-brand-card/90 border border-brand-primary/20 rounded-xl overflow-hidden group hover:border-brand-primary transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.35)] flex flex-col">
+                    <div class="relative pt-[100%] bg-gradient-to-b from-brand-secondary/30 to-brand-card overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-gray-500 group-hover:scale-105 transition-transform duration-500">
+                            <i class="fa-solid fa-user text-6xl text-brand-primary/40"></i>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-brand-primary/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">
+                            EFRAIM
+                        </span>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col justify-between border-t border-brand-primary/10 bg-brand-card">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block mb-1">Treasurer</span>
+                            <h3 class="font-esports text-xl font-bold text-white tracking-wide leading-snug">Mohammad Aidil Irfan</h3>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                            <span class="font-mono text-gray-400">BCS25020038</span>
+                            <span class="text-brand-primary font-semibold">25/26 EXCO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Public Relations -->
+                <div class="bg-brand-card/90 border border-brand-primary/20 rounded-xl overflow-hidden group hover:border-brand-primary transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.35)] flex flex-col">
+                    <div class="relative pt-[100%] bg-gradient-to-b from-brand-secondary/30 to-brand-card overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-gray-500 group-hover:scale-105 transition-transform duration-500">
+                            <i class="fa-solid fa-user text-6xl text-brand-primary/40"></i>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-brand-primary/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">
+                            PORORO
+                        </span>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col justify-between border-t border-brand-primary/10 bg-brand-card">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block mb-1">Public Relations</span>
+                            <h3 class="font-esports text-xl font-bold text-white tracking-wide leading-snug">Rowina Anak Suzilla</h3>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                            <span class="font-mono text-gray-400">BBM25020029</span>
+                            <span class="text-brand-primary font-semibold">25/26 EXCO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logistics -->
+                <div class="bg-brand-card/90 border border-brand-primary/20 rounded-xl overflow-hidden group hover:border-brand-primary transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.35)] flex flex-col">
+                    <div class="relative pt-[100%] bg-gradient-to-b from-brand-secondary/30 to-brand-card overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-gray-500 group-hover:scale-105 transition-transform duration-500">
+                            <i class="fa-solid fa-user text-6xl text-brand-primary/40"></i>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-brand-primary/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">
+                            SENSASKAR
+                        </span>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col justify-between border-t border-brand-primary/10 bg-brand-card">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block mb-1">Logistics</span>
+                            <h3 class="font-esports text-xl font-bold text-white tracking-wide leading-snug">Ashley Ting</h3>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                            <span class="font-mono text-gray-400">BSP25020010</span>
+                            <span class="text-brand-primary font-semibold">25/26 EXCO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program -->
+                <div class="bg-brand-card/90 border border-brand-primary/20 rounded-xl overflow-hidden group hover:border-brand-primary transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.35)] flex flex-col">
+                    <div class="relative pt-[100%] bg-gradient-to-b from-brand-secondary/30 to-brand-card overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-gray-500 group-hover:scale-105 transition-transform duration-500">
+                            <i class="fa-solid fa-user text-6xl text-brand-primary/40"></i>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-brand-primary/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">
+                            ISERAPPP
+                        </span>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col justify-between border-t border-brand-primary/10 bg-brand-card">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block mb-1">Program</span>
+                            <h3 class="font-esports text-xl font-bold text-white tracking-wide leading-snug">Muhamad Aqil Isyraf</h3>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                            <span class="font-mono text-gray-400">BCE24020001</span>
+                            <span class="text-brand-primary font-semibold">25/26 EXCO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multimedia -->
+                <div class="bg-brand-card/90 border border-brand-primary/20 rounded-xl overflow-hidden group hover:border-brand-primary transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.35)] flex flex-col">
+                    <div class="relative pt-[100%] bg-gradient-to-b from-brand-secondary/30 to-brand-card overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-gray-500 group-hover:scale-105 transition-transform duration-500">
+                            <i class="fa-solid fa-user text-6xl text-brand-primary/40"></i>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-brand-primary/90 text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow">
+                            ZAO HEVNAVIK
+                        </span>
+                    </div>
+                    <div class="p-5 text-center flex-1 flex flex-col justify-between border-t border-brand-primary/10 bg-brand-card">
+                        <div>
+                            <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block mb-1">Multimedia</span>
+                            <h3 class="font-esports text-xl font-bold text-white tracking-wide leading-snug">Mohamad Riezayd Aliff</h3>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-xs text-gray-400">
+                            <span class="font-mono text-gray-400">BDM25020004</span>
+                            <span class="text-brand-primary font-semibold">25/26 EXCO</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-[#02050b] border-t border-gray-900 pt-16 pb-8 relative overflow-hidden">
+        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-1 bg-brand-primary shadow-[0_0_50px_10px_rgba(37,99,235,0.5)]"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div class="col-span-1">
+                    <a href="#" class="font-esports text-3xl font-extrabold tracking-wider flex items-center gap-3 mb-6">
+                        <img src="main.png" alt="UTS Swan Logo" class="w-8 h-8 object-contain">
+                        <span class="text-white">UTS<span class="text-brand-primary">ESPORTS</span></span>
+                    </a>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        The Official Esports Club account for University of Technology Sarawak, Sibu. EST 2019
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/uctsesport" target="_blank" class="w-10 h-10 rounded-full bg-brand-card flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#1877F2] transition-all border border-gray-800" title="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/utsesportsclub/" target="_blank" class="w-10 h-10 rounded-full bg-brand-card flex items-center justify-center text-gray-400 hover:text-white hover:bg-gradient-to-tr from-brand-secondary to-brand-primary transition-all border border-gray-800" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://linktr.ee/utsesportsclub" target="_blank" class="w-10 h-10 rounded-full bg-brand-card flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#43E660] transition-all border border-gray-800" title="Linktree">
+                            <i class="fa-solid fa-link"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@utsesportsclub" target="_blank" class="w-10 h-10 rounded-full bg-brand-card flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#000000] transition-all border border-gray-800" title="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="https://discord.com" target="_blank" class="w-10 h-10 rounded-full bg-brand-card flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#5865F2] transition-all border border-gray-800" title="Discord">
+                            <i class="fa-brands fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="font-esports text-white text-xl font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#teams" class="text-gray-400 hover:text-brand-primary transition-colors text-sm">Competitive Teams</a></li>
+                        <li><a href="https://www.facebook.com/uctsesport" target="_blank" class="text-gray-400 hover:text-brand-primary transition-colors text-sm">Tournaments & Selections</a></li>
+                        <li><a href="#merch" class="text-gray-400 hover:text-brand-primary transition-colors text-sm">Official Merch</a></li>
+                        <li><a href="#committee" class="text-gray-400 hover:text-brand-primary transition-colors text-sm">EXCO Committee</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-brand-primary transition-colors text-sm">Become a Sponsor</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="font-esports text-white text-xl font-bold mb-6">Connect With Us</h4>
+                    <p class="text-gray-400 text-sm mb-4">Official contact details for University of Technology Sarawak Esports Club.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand-primary"></i>
+                            <a href="mailto:esportsclub@uts.edu.my" class="text-brand-accent hover:text-white text-sm transition-colors">esportsclub@uts.edu.my</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-link text-brand-primary"></i>
+                            <a href="https://linktr.ee/utsesportsclub" target="_blank" class="text-brand-accent hover:text-white text-sm transition-colors">linktr.ee/utsesportsclub</a>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-brand-primary mt-1"></i>
+                            <span class="text-gray-400 text-sm">1, Jalan University, Sibu, Malaysia, 96000</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 text-sm mb-4 md:mb-0">
+                    &copy; 2026 UTS Esports Club. All rights reserved.
+                </p>
+                <div class="flex space-x-4 text-sm text-gray-600">
+                    <a href="#" class="hover:text-gray-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Merch Pre-Order Modal (Connected to Google Sheets) -->
+    <div id="merchModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="relative w-full max-w-md bg-[#081224] border border-brand-primary/50 rounded-2xl shadow-2xl p-6 sm:p-8">
+            <div class="flex justify-between items-start pb-4 border-b border-white/10">
+                <div>
+                    <span class="font-mono text-[11px] text-brand-accent uppercase tracking-widest block">UTS ESPORTS PRO SHOP // GOOGLE SHEET SYNC</span>
+                    <h3 class="font-esports text-2xl font-extrabold text-white uppercase mt-0.5" id="merchModalItem">MERCH PRE-ORDER</h3>
+                </div>
+                <button onclick="closeMerchModal()" class="w-9 h-9 rounded-full bg-brand-card hover:bg-brand-primary border border-gray-700 text-gray-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Form View -->
+            <form id="merchOrderForm" onsubmit="submitMerchOrder(event)" class="mt-5 space-y-4">
+                <div class="bg-black/40 border border-white/10 rounded-lg p-3.5 flex justify-between items-center font-mono text-xs">
+                    <div>
+                        <span class="text-gray-400 block">SELECTED VARIANT</span>
+                        <strong class="text-white" id="merchModalVariant">Obsidian Black · Size M</strong>
+                    </div>
+                    <span class="font-esports text-xl font-extrabold text-brand-accent" id="merchModalPrice">RM 49</span>
+                </div>
+
+                <div>
+                    <label class="block font-mono text-[11px] text-gray-400 uppercase tracking-wider mb-1.5">Full Name</label>
+                    <input type="text" id="orderFullName" required placeholder="e.g. Joel Aran Jimpau" class="w-full bg-brand-dark border border-white/15 focus:border-brand-primary rounded-lg px-3.5 py-2.5 text-sm text-white outline-none">
+                </div>
+
+                <div>
+                    <label class="block font-mono text-[11px] text-gray-400 uppercase tracking-wider mb-1.5">UTS Student ID &amp; WhatsApp No.</label>
+                    <input type="text" id="orderStudentId" required placeholder="e.g. BCS25020046 / 012-3456789" class="w-full bg-brand-dark border border-white/15 focus:border-brand-primary rounded-lg px-3.5 py-2.5 text-sm text-white outline-none">
+                </div>
+
+                <div id="customIgnField">
+                    <label class="block font-mono text-[11px] text-gray-400 uppercase tracking-wider mb-1.5">Custom Back IGN (Optional)</label>
+                    <input type="text" id="orderCustomIgn" maxlength="16" placeholder="e.g. JINBEI" class="w-full bg-brand-dark border border-white/15 focus:border-brand-primary rounded-lg px-3.5 py-2.5 text-sm text-white uppercase font-mono outline-none">
+                </div>
+
+                <button type="submit" id="merchSubmitBtn" class="w-full py-3.5 bg-brand-primary hover:bg-blue-500 text-white font-esports font-extrabold text-sm uppercase tracking-wider rounded-lg transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2">
+                    <span>Confirm Reservation</span>
+                </button>
+            </form>
+
+            <!-- Success Receipt View -->
+            <div id="merchOrderSuccess" class="hidden mt-5 text-center space-y-4">
+                <div class="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-400 text-emerald-400 flex items-center justify-center mx-auto text-2xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div>
+                    <span class="font-mono text-[11px] text-emerald-400 uppercase tracking-widest block">LOGGED TO SHEET</span>
+                    <h4 class="font-esports text-2xl font-extrabold text-white uppercase mt-1">PRE-ORDER CONFIRMED</h4>
+                    <p class="text-gray-400 text-xs mt-1" id="merchReceiptSummary"></p>
+                </div>
+                <button type="button" onclick="closeMerchModal()" class="w-full py-3 bg-white text-gray-950 hover:bg-brand-primary hover:text-white font-esports font-extrabold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Player Cards Modal -->
+    <div id="playerModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div class="relative w-full max-w-6xl bg-brand-dark border border-brand-primary/40 rounded-2xl shadow-2xl p-6 sm:p-8 my-auto overflow-hidden">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center pb-6 border-b border-gray-800">
+                <div>
+                    <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block" id="modalSubTitle">UTS ESPORTS DIVISION ROSTER</span>
+                    <h3 class="font-esports text-3xl sm:text-4xl font-extrabold text-white tracking-wider uppercase" id="modalTitle">PLAYER CARDS</h3>
+                </div>
+                <button onclick="closePlayerModal()" class="w-10 h-10 rounded-full bg-brand-card hover:bg-brand-primary border border-gray-700 text-gray-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Team Switcher Pills (Shown when a division has Team 1 / Team 2) -->
+            <div class="flex flex-wrap items-center gap-2 mt-5" id="modalTeamFilters"></div>
+
+            <!-- Role Filter Pills -->
+            <div class="flex flex-wrap gap-2 mt-3 mb-6" id="modalFilters"></div>
+
+            <!-- Player Carousel -->
+            <div class="relative">
+                <div class="player-carousel" id="playerCardsGrid"></div>
+                <button id="carouselPrev" onclick="carouselStep(-1)" aria-label="Previous player" class="carousel-btn left-0 w-11 h-11 rounded-full bg-brand-card/90 hover:bg-yellow-500 border border-gray-700 hover:border-yellow-400 text-gray-200 hover:text-black flex items-center justify-center transition-colors cursor-pointer">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button id="carouselNext" onclick="carouselStep(1)" aria-label="Next player" class="carousel-btn right-0 w-11 h-11 rounded-full bg-brand-card/90 hover:bg-yellow-500 border border-gray-700 hover:border-yellow-400 text-gray-200 hover:text-black flex items-center justify-center transition-colors cursor-pointer">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="flex flex-col items-center gap-3 mt-4">
+                <div class="flex items-center gap-2" id="carouselDots"></div>
+                <span class="text-[11px] font-mono tracking-widest text-gray-400 uppercase" id="carouselCounter"></span>
+                <button id="gyroBtn" onclick="toggleGyro()" class="hidden px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider border bg-brand-card text-gray-300 border-gray-700 hover:border-yellow-500 transition-all cursor-pointer">
+                    <i class="fa-solid fa-mobile-screen-button mr-1"></i> <span id="gyroLabel">Enable Gyro</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Banner Slideshow Loop (Smooth Crossfade & Zoom)
+        const slides = document.querySelectorAll('.banner-slide');
+        let currentSlide = 0;
+        
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5500);
+
+        // Navbar Background on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg', 'bg-brand-dark/85', 'backdrop-blur-md');
+                navbar.classList.remove('bg-brand-dark/20', 'backdrop-blur-sm');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-brand-dark/85', 'backdrop-blur-md');
+                navbar.classList.add('bg-brand-dark/20', 'backdrop-blur-sm');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                menu.classList.add('hidden');
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ========================================================
+        // GOOGLE SHEETS MERCH ORDER HOOKUP & COLORWAY CONTROLS
+        // ========================================================
+        // Paste your deployed Google Apps Script Web App URL below to log orders directly to your Google Sheet:
+        const MERCH_ORDER_SHEET_URL = '';
+
+        function setTshirtColor(variant) {
+            const img = document.getElementById('tshirt-img');
+            const stage = document.getElementById('tshirt-stage');
+            const colorName = document.getElementById('tshirt-color-name');
+            const stageLabel = document.getElementById('tshirt-stage-label');
+            const btnBlack = document.getElementById('btn-tshirt-black');
+            const btnWhite = document.getElementById('btn-tshirt-white');
+
+            if (variant === 'white') {
+                img.src = 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900&auto=format&fit=crop';
+                stage.className = 'relative h-80 merch-grid-bg bg-gradient-to-b from-[#1e293b] to-[#060d1a] flex items-center justify-center p-4 overflow-hidden border-b border-white/10 transition-colors duration-500';
+                colorName.innerText = 'Arctic White';
+                stageLabel.innerText = 'VARIANT: ARCTIC WHITE';
+                btnWhite.classList.add('active', 'border-brand-primary');
+                btnWhite.classList.remove('border-gray-400');
+                btnBlack.classList.remove('active', 'border-white');
+                btnBlack.classList.add('border-gray-600');
+            } else {
+                img.src = 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=900&auto=format&fit=crop';
+                stage.className = 'relative h-80 merch-grid-bg bg-gradient-to-b from-[#111827] to-[#060d1a] flex items-center justify-center p-4 overflow-hidden border-b border-white/10 transition-colors duration-500';
+                colorName.innerText = 'Obsidian Black';
+                stageLabel.innerText = 'VARIANT: OBSIDIAN BLACK';
+                btnBlack.classList.add('active', 'border-white');
+                btnBlack.classList.remove('border-gray-600');
+                btnWhite.classList.remove('active', 'border-brand-primary');
+                btnWhite.classList.add('border-gray-400');
+            }
+        }
+
+        function setJacketColor(variant) {
+            const img = document.getElementById('jacket-img');
+            const stage = document.getElementById('jacket-stage');
+            const colorName = document.getElementById('jacket-color-name');
+            const stageLabel = document.getElementById('jacket-stage-label');
+            const btnBlack = document.getElementById('btn-jacket-black');
+            const btnGrey = document.getElementById('btn-jacket-grey');
+
+            if (variant === 'grey') {
+                img.src = 'https://www.highcultured.my/cdn/shop/files/1ccdd01b2e34854959eb726b74e98919.jpg?v=1792749952';
+                stage.className = 'relative h-80 merch-grid-bg bg-gradient-to-b from-[#27272a] to-[#060d1a] flex items-center justify-center p-4 overflow-hidden border-b border-white/10 transition-colors duration-500';
+                colorName.innerText = 'Grey';
+                stageLabel.innerText = 'VARIANT: GREY';
+                btnGrey.classList.add('active', 'border-white');
+                btnGrey.classList.remove('border-gray-400');
+                btnBlack.classList.remove('active', 'border-white');
+                btnBlack.classList.add('border-gray-600');
+            } else {
+                img.src = 'https://www.highcultured.my/cdn/shop/files/0456d2654f3177bb616afc46c356849e.jpg?v=1792749942';
+                stage.className = 'relative h-80 merch-grid-bg bg-gradient-to-b from-[#141821] to-[#060d1a] flex items-center justify-center p-4 overflow-hidden border-b border-white/10 transition-colors duration-500';
+                colorName.innerText = 'Black';
+                stageLabel.innerText = 'VARIANT: BLACK';
+                btnBlack.classList.add('active', 'border-white');
+                btnBlack.classList.remove('border-gray-600');
+                btnGrey.classList.remove('active', 'border-white');
+                btnGrey.classList.add('border-gray-400');
+            }
+        }
+
+        function selectSize(btnEl) {
+            const group = btnEl.parentElement;
+            group.querySelectorAll('.size-pill').forEach(pill => {
+                pill.classList.remove('border-brand-primary', 'bg-brand-primary', 'text-white');
+                pill.classList.add('border-white/15', 'text-gray-300');
+            });
+            btnEl.classList.remove('border-white/15', 'text-gray-300');
+            btnEl.classList.add('border-brand-primary', 'bg-brand-primary', 'text-white');
+        }
+
+        let currentOrderSelection = { item: '', price: '', color: '', size: 'M' };
+
+        function openMerchOrder(itemName, price, colorName, groupKey, allowCustomIgn) {
+            const sizeGroup = document.querySelector(`[data-size-group="${groupKey}"]`);
+            const activeSizePill = sizeGroup ? sizeGroup.querySelector('.bg-brand-primary') : null;
+            const selectedSize = activeSizePill ? activeSizePill.innerText.trim() : 'M';
+
+            currentOrderSelection = { item: itemName, price: price, color: colorName, size: selectedSize };
+
+            document.getElementById('merchOrderForm').classList.remove('hidden');
+            document.getElementById('merchOrderSuccess').classList.add('hidden');
+            document.getElementById('merchModalItem').innerText = itemName;
+            document.getElementById('merchModalVariant').innerText = `${colorName} · Size ${selectedSize}`;
+            document.getElementById('merchModalPrice').innerText = price;
+            document.getElementById('customIgnField').style.display = allowCustomIgn ? 'block' : 'none';
+            document.getElementById('merchModal').classList.remove('hidden');
+        }
+
+        function closeMerchModal() {
+            document.getElementById('merchModal').classList.add('hidden');
+        }
+
+        async function submitMerchOrder(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('merchSubmitBtn');
+            const name = document.getElementById('orderFullName').value.trim();
+            const studentId = document.getElementById('orderStudentId').value.trim();
+            const ign = document.getElementById('orderCustomIgn').value.trim().toUpperCase();
+
+            const payload = {
+                timestamp: new Date().toISOString(),
+                item: currentOrderSelection.item,
+                color: currentOrderSelection.color,
+                size: currentOrderSelection.size,
+                price: currentOrderSelection.price,
+                customIgn: ign || '-',
+                fullName: name,
+                studentIdContact: studentId
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> <span>Saving to Sheet...</span>';
+
+            try {
+                if (MERCH_ORDER_SHEET_URL) {
+                    await fetch(MERCH_ORDER_SHEET_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                } else {
+                    console.info('Merch Order Payload (Ready for Google Apps Script URL):', payload);
+                    await new Promise(r => setTimeout(r, 400));
+                }
+
+                const ignNote = ign ? ` · IGN: ${ign}` : '';
+                document.getElementById('merchReceiptSummary').innerText = `${payload.item} (${payload.color}, Size ${payload.size}${ignNote}) reserved for ${name}.`;
+                document.getElementById('merchOrderForm').classList.add('hidden');
+                document.getElementById('merchOrderSuccess').classList.remove('hidden');
+                e.target.reset();
+            } catch (err) {
+                console.error('Order submission error:', err);
+                alert('Network error submitting order. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Confirm Reservation</span>';
+            }
+        }
+
+        // ========================================================
+        // TRADING PLAYER CARD MODAL & 3D TILT LOGIC
+        // ========================================================
+        const playerDatabase = {
+            'MLBB': [
+                // TEAM 1
+                {
+                    team: 'TEAM 1',
+                    handle: 'jinbei',
+                    realName: 'Ahmad Jinbei',
+                    teamRole: 'UTS TEAM 1 // OPERATIVE',
+                    role: 'EXP LANE',
+                    rarity: 'LEGENDARY',
+                    pwr: 300,
+                    stats: ['WATER', 'LVL 8', '2 SHIPPED'],
+                    setCode: 'MLBB-T1-01',
+                    image: 'https://cdn.britannica.com/68/226968-050-C2FF98B9/Canadian-singer-Justin-Bieber-2021.jpg'
+                },
+                {
+                    team: 'TEAM 1',
+                    handle: 'BELLA',
+                    realName: 'As-Salsabella Binti Musa',
+                    teamRole: 'UTS TEAM 1 // CAPTAIN',
+                    role: 'MID LANE',
+                    rarity: 'MYTHIC',
+                    pwr: 350,
+                    stats: ['MAGE', 'LVL 10', 'MVP 12x'],
+                    setCode: 'MLBB-T1-02',
+                    image: 'https://ntvb.tmsimg.com/assets/assets/1027990_v9_bc.jpg'
+                },
+                {
+                    team: 'TEAM 1',
+                    handle: 'KIOZ',
+                    realName: 'Wan Amiruddin',
+                    teamRole: 'UTS TEAM 1 // ROAMER',
+                    role: 'ROAMER',
+                    rarity: 'LEGENDARY',
+                    pwr: 320,
+                    stats: ['SHIELD', 'LVL 9', 'ASSIST 142'],
+                    setCode: 'MLBB-T1-03',
+                    image: 'https://upload.wikimedia.org/wikipedia/commons/5/52/2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3973_by_Stepro_%28medium_crop%29.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original'
+                },
+                {
+                    team: 'TEAM 1',
+                    handle: 'RYUJI',
+                    realName: 'Daniel Hakim',
+                    teamRole: 'UTS TEAM 1 // HYPER',
+                    role: 'JUNGLER',
+                    rarity: 'MYTHIC',
+                    pwr: 345,
+                    stats: ['ASSASSIN', 'LVL 10', 'RETRI 94%'],
+                    setCode: 'MLBB-T1-04',
+                    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'
+                },
+                {
+                    team: 'TEAM 1',
+                    handle: 'VEXANA',
+                    realName: 'Calvin Wong',
+                    teamRole: 'UTS TEAM 1 // MARKSMAN',
+                    role: 'GOLD LANE',
+                    rarity: 'LEGENDARY',
+                    pwr: 330,
+                    stats: ['CARRY', 'LVL 9', 'GPM 840'],
+                    setCode: 'MLBB-T1-05',
+                    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop'
+                },
+                // TEAM 2
+                {
+                    team: 'TEAM 2',
+                    handle: 'EFRAIM',
+                    realName: 'Mohammad Aidil Irfan',
+                    teamRole: 'UTS TEAM 2 // CAPTAIN',
+                    role: 'JUNGLER',
+                    rarity: 'LEGENDARY',
+                    pwr: 315,
+                    stats: ['FIGHTER', 'LVL 9', 'TURTLE 82%'],
+                    setCode: 'MLBB-T2-01',
+                    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop'
+                },
+                {
+                    team: 'TEAM 2',
+                    handle: 'ELLYRA',
+                    realName: 'Nurul Khalisah',
+                    teamRole: 'UTS TEAM 2 // MAGE',
+                    role: 'MID LANE',
+                    rarity: 'EPIC',
+                    pwr: 295,
+                    stats: ['BURST', 'LVL 8', 'KDA 6.4'],
+                    setCode: 'MLBB-T2-02',
+                    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop'
+                },
+                {
+                    team: 'TEAM 2',
+                    handle: 'KAZE',
+                    realName: 'Marcus Lau',
+                    teamRole: 'UTS TEAM 2 // OFFLANER',
+                    role: 'EXP LANE',
+                    rarity: 'LEGENDARY',
+                    pwr: 305,
+                    stats: ['SUSTAIN', 'LVL 8', 'SOLO 19x'],
+                    setCode: 'MLBB-T2-03',
+                    image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=800&auto=format&fit=crop'
+                },
+                {
+                    team: 'TEAM 2',
+                    handle: 'NYX',
+                    realName: 'Brandon Tie',
+                    teamRole: 'UTS TEAM 2 // CARRY',
+                    role: 'GOLD LANE',
+                    rarity: 'EPIC',
+                    pwr: 290,
+                    stats: ['SNIPE', 'LVL 8', 'DMG 34%'],
+                    setCode: 'MLBB-T2-04',
+                    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop'
+                },
+                {
+                    team: 'TEAM 2',
+                    handle: 'AEGIS',
+                    realName: 'Syafiq Roslan',
+                    teamRole: 'UTS TEAM 2 // SUPPORT',
+                    role: 'ROAMER',
+                    rarity: 'EPIC',
+                    pwr: 285,
+                    stats: ['INITIATE', 'LVL 8', 'SET 110'],
+                    setCode: 'MLBB-T2-05',
+                    image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=800&auto=format&fit=crop'
+                }
+            ],
+            'PUBG': [
+                {
+                    handle: 'SENSASKAR',
+                    realName: 'Ashley Ting',
+                    teamRole: 'UTS ESPORTS // IFL',
+                    role: 'SNIPER',
+                    rarity: 'LEGENDARY',
+                    pwr: 310,
+                    stats: ['AMR 50', 'LVL 9', 'TOP 1'],
+                    setCode: 'PUBG-UTS-01',
+                    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop'
+                },
+                {
+                    handle: 'PORORO',
+                    realName: 'Rowina Anak Suzilla',
+                    teamRole: 'UTS ESPORTS // ASSAULTER',
+                    role: 'FRAGGER',
+                    rarity: 'MYTHIC',
+                    pwr: 340,
+                    stats: ['M416', 'LVL 10', 'K/D 5.2'],
+                    setCode: 'PUBG-UTS-02',
+                    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop'
+                }
+            ],
+            'VALORANT': [
+                {
+                    handle: 'ZAO HEVNAVIK',
+                    realName: 'Mohamad Riezayd',
+                    teamRole: 'UTS ESPORTS // ICL',
+                    role: 'DUELIST',
+                    rarity: 'IMMORTAL',
+                    pwr: 360,
+                    stats: ['JETT', 'LVL 12', 'HEADSHOT 48%'],
+                    setCode: 'VAL-UTS-01',
+                    image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=800&auto=format&fit=crop'
+                },
+                {
+                    handle: 'ISERAPPP',
+                    realName: 'Muhamad Aqil Isyraf',
+                    teamRole: 'UTS ESPORTS // CONTROLLER',
+                    role: 'INITIATOR',
+                    rarity: 'RADIANT',
+                    pwr: 380,
+                    stats: ['OMEN', 'LVL 15', 'CLUTCH 18x'],
+                    setCode: 'VAL-UTS-02',
+                    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop'
+                }
+            ]
+        };
+
+        let currentModalGame = 'MLBB';
+        let currentTeamFilter = 'ALL';
+        let currentFilter = 'ALL';
+
+        function openPlayerModal(gameKey) {
+            currentModalGame = gameKey;
+            currentTeamFilter = 'ALL';
+            currentFilter = 'ALL';
+            
+            document.getElementById('modalTitle').innerText = `${gameKey} ROSTER`;
+            document.getElementById('modalSubTitle').innerText = `UTS ESPORTS DIVISION // TRADING CARDS`;
+            
+            setupFilters(gameKey);
+            renderPlayerCards();
+            
+            document.getElementById('playerModal').classList.remove('hidden');
+            gyroBase = null;
+            updateCarousel();
+        }
+
+        function closePlayerModal() {
+            document.getElementById('playerModal').classList.add('hidden');
+        }
+
+        function setupFilters(gameKey) {
+            const teamContainer = document.getElementById('modalTeamFilters');
+            const filterContainer = document.getElementById('modalFilters');
+            teamContainer.innerHTML = '';
+            filterContainer.innerHTML = '';
+            
+            const allPlayers = playerDatabase[gameKey] || [];
+            const teams = [...new Set(allPlayers.map(p => p.team).filter(Boolean))];
+
+            if (teams.length > 0) {
+                teamContainer.classList.remove('hidden');
+                const teamOptions = ['ALL', ...teams];
+                teamOptions.forEach(teamName => {
+                    const tBtn = document.createElement('button');
+                    const isSelected = teamName === currentTeamFilter;
+                    tBtn.className = `px-4 py-1.5 rounded text-xs font-mono font-bold uppercase tracking-wider transition-all border cursor-pointer ${isSelected ? 'bg-brand-primary text-white border-brand-accent shadow-[0_0_12px_rgba(37,99,235,0.6)]' : 'bg-brand-card/80 text-gray-300 border-gray-700 hover:border-brand-primary'}`;
+                    tBtn.innerText = teamName === 'ALL' ? 'ALL TEAMS' : teamName;
+                    tBtn.onclick = () => {
+                        currentTeamFilter = teamName;
+                        currentFilter = 'ALL';
+                        setupFilters(gameKey);
+                        renderPlayerCards();
+                    };
+                    teamContainer.appendChild(tBtn);
+                });
+            } else {
+                teamContainer.classList.add('hidden');
+            }
+
+            const teamFilteredPlayers = allPlayers.filter(p => currentTeamFilter === 'ALL' || p.team === currentTeamFilter);
+            const roles = ['ALL', ...new Set(teamFilteredPlayers.map(p => p.role))];
+            
+            roles.forEach(role => {
+                const btn = document.createElement('button');
+                btn.className = `px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase transition-all border cursor-pointer ${role === currentFilter ? 'bg-yellow-500 text-black border-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 'bg-brand-card text-gray-300 border-gray-700 hover:border-yellow-500'}`;
+                btn.innerText = role;
+                btn.onclick = () => {
+                    currentFilter = role;
+                    setupFilters(gameKey);
+                    renderPlayerCards();
+                };
+                filterContainer.appendChild(btn);
+            });
+        }
+
+        const SIDE_TILT = 25;
+        let carouselIndex = 0;
+        let carouselWrappers = [];
+
+        function renderPlayerCards() {
+            const grid = document.getElementById('playerCardsGrid');
+            grid.innerHTML = '';
+            carouselWrappers = [];
+            carouselIndex = 0;
+
+            const players = (playerDatabase[currentModalGame] || []).filter(p => {
+                const matchesTeam = currentTeamFilter === 'ALL' || p.team === currentTeamFilter;
+                const matchesRole = currentFilter === 'ALL' || p.role === currentFilter;
+                return matchesTeam && matchesRole;
+            });
+
+            players.forEach((p, i) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'player-card-wrapper';
+                wrapper.onclick = () => { if (i !== carouselIndex) goToCard(i); };
+
+                const teamTagHtml = p.team ? `<span class="inline-block bg-brand-primary/30 text-brand-accent border border-brand-primary/60 text-[9px] font-mono font-bold px-2 py-0.5 rounded uppercase tracking-wider mr-1.5 mb-2">${p.team}</span>` : '';
+
+                wrapper.innerHTML = `
+                    <div class="player-card relative rounded-2xl p-5 overflow-hidden flex flex-col justify-between h-[450px] cursor-pointer" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+                        <div class="card-shine"></div>
+                        
+                        <img src="${p.image}" alt="${p.handle}" class="absolute inset-0 w-full h-full object-cover opacity-45 mix-blend-luminosity">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+
+                        <div class="relative z-10 flex justify-between items-start">
+                            <div>
+                                <span class="text-[11px] font-mono tracking-widest text-yellow-400 font-bold block uppercase">${p.teamRole}</span>
+                                <h2 class="font-esports text-3xl sm:text-4xl font-extrabold text-yellow-300 tracking-wide uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">${p.handle}</h2>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-esports text-3xl font-extrabold text-white block leading-none drop-shadow">${p.pwr}</span>
+                                <span class="text-[9px] font-mono tracking-widest text-gray-400 uppercase">PWR</span>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 space-y-3">
+                            <div class="inline-block border-b-2 border-yellow-400 pb-1">
+                                <span class="font-esports text-xl font-bold text-white tracking-widest uppercase">${p.realName || 'LEADERBOARD FIXTURE'}</span>
+                            </div>
+
+                            <div>
+                                ${teamTagHtml}
+                                <span class="inline-block bg-yellow-500/20 text-yellow-400 border border-yellow-400/50 text-[10px] font-mono font-bold px-2.5 py-0.5 rounded uppercase tracking-wider mb-2">
+                                    ${p.rarity}
+                                </span>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 text-[10px] font-mono uppercase">
+                                ${p.stats.map(s => `<span class="bg-black/60 backdrop-blur border border-gray-700 px-2.5 py-1 rounded text-gray-200 font-bold">${s}</span>`).join('')}
+                            </div>
+
+                            <div class="flex justify-between items-center text-[10px] font-mono text-gray-400 pt-2 border-t border-gray-800/80">
+                                <span>${p.role}</span>
+                                <span class="tracking-widest text-gray-300 font-bold">${p.setCode}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(wrapper);
+                carouselWrappers.push(wrapper);
+            });
+
+            const dots = document.getElementById('carouselDots');
+            dots.innerHTML = '';
+            players.forEach((_, i) => {
+                const d = document.createElement('span');
+                d.className = 'carousel-dot';
+                d.onclick = () => goToCard(i);
+                dots.appendChild(d);
+            });
+
+            const multi = players.length > 1;
+            document.getElementById('carouselPrev').style.display = multi ? '' : 'none';
+            document.getElementById('carouselNext').style.display = multi ? '' : 'none';
+
+            updateCarousel();
+        }
+
+        function goToCard(i) {
+            const n = carouselWrappers.length;
+            if (!n) return;
+            carouselIndex = Math.max(0, Math.min(n - 1, i));
+            updateCarousel();
+        }
+
+        function carouselStep(dir) {
+            const n = carouselWrappers.length;
+            if (!n) return;
+            carouselIndex = (carouselIndex + dir + n) % n;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const grid = document.getElementById('playerCardsGrid');
+            const spacing = grid.clientWidth < 640 ? 150 : 230;
+            const n = carouselWrappers.length;
+
+            carouselWrappers.forEach((w, i) => {
+                const offset = i - carouselIndex;
+                const abs = Math.abs(offset);
+                const sign = Math.sign(offset);
+                const visible = abs <= 2;
+
+                w.classList.toggle('is-active', offset === 0);
+                w.style.zIndex = String(10 - abs);
+                w.style.opacity = visible ? (abs === 0 ? 1 : abs === 1 ? 0.85 : 0.45) : 0;
+                w.style.pointerEvents = visible ? 'auto' : 'none';
+                w.style.transform = offset === 0
+                    ? 'translateX(0) translateZ(0) rotateY(0deg) scale(1)'
+                    : `translateX(${sign * (spacing * Math.min(abs, 2) * 0.9 + 20)}px) translateZ(${-120 * abs}px) rotateY(${-sign * SIDE_TILT}deg) scale(${1 - 0.1 * abs})`;
+
+                const card = w.querySelector('.player-card');
+                if (card) resetTilt(card);
+            });
+
+            document.querySelectorAll('#carouselDots .carousel-dot').forEach((d, i) => d.classList.toggle('active', i === carouselIndex));
+            document.getElementById('carouselCounter').innerText = n ? `${String(carouselIndex + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}` : 'NO PLAYERS';
+        }
+
+        // ========================================================
+        // GYRO CONTROL (mobile)
+        // ========================================================
+        const GYRO_MAX_TILT = 14;
+        const GYRO_SENSITIVITY = 0.6;
+        let gyroOn = false;
+        let gyroBase = null;
+
+        function gyroSupported() {
+            return 'DeviceOrientationEvent' in window && window.matchMedia('(pointer: coarse)').matches;
+        }
+
+        function setGyroUI() {
+            const btn = document.getElementById('gyroBtn');
+            const label = document.getElementById('gyroLabel');
+            if (!btn) return;
+            label.innerText = gyroOn ? 'Gyro On' : 'Enable Gyro';
+            btn.className = `px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider border transition-all cursor-pointer ${gyroOn ? 'bg-yellow-500 text-black border-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 'bg-brand-card text-gray-300 border-gray-700 hover:border-yellow-500'}`;
+        }
+
+        async function toggleGyro() {
+            if (gyroOn) {
+                window.removeEventListener('deviceorientation', onGyro);
+                gyroOn = false;
+                setGyroUI();
+                const active = carouselWrappers[carouselIndex];
+                if (active) {
+                    const c = active.querySelector('.player-card');
+                    resetTilt(c);
+                    const sh = c.querySelector('.card-shine');
+                    if (sh) sh.style.opacity = '';
+                }
+                return;
+            }
+            try {
+                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    const res = await DeviceOrientationEvent.requestPermission();
+                    if (res !== 'granted') return;
+                }
+            } catch (err) {
+                console.warn('Gyro permission error:', err);
+                return;
+            }
+            gyroBase = null;
+            window.addEventListener('deviceorientation', onGyro);
+            gyroOn = true;
+            setGyroUI();
+        }
+
+        function onGyro(e) {
+            if (document.getElementById('playerModal').classList.contains('hidden')) return;
+            if (e.gamma === null || e.beta === null) return;
+
+            if (!gyroBase) gyroBase = { gamma: e.gamma, beta: e.beta };
+            const g = e.gamma - gyroBase.gamma;
+            const b = e.beta - gyroBase.beta;
+
+            const clamp = (v, m) => Math.max(-m, Math.min(m, v));
+            const rotY = clamp(g * GYRO_SENSITIVITY, GYRO_MAX_TILT);
+            const rotX = clamp(-b * GYRO_SENSITIVITY, GYRO_MAX_TILT);
+
+            const active = carouselWrappers[carouselIndex];
+            const card = active && active.querySelector('.player-card');
+            if (card) {
+                card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.03, 1.03, 1.03)`;
+                const shine = card.querySelector('.card-shine');
+                if (shine) shine.style.opacity = Math.min(1, (Math.abs(rotX) + Math.abs(rotY)) / GYRO_MAX_TILT);
+            }
+        }
+
+        function initGyroUI() {
+            const btn = document.getElementById('gyroBtn');
+            if (btn && gyroSupported()) btn.classList.remove('hidden');
+            setGyroUI();
+        }
+        initGyroUI();
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('merchModal').classList.contains('hidden') && e.key === 'Escape') {
+                closeMerchModal();
+                return;
+            }
+            if (document.getElementById('playerModal').classList.contains('hidden')) return;
+            if (e.key === 'ArrowLeft') carouselStep(-1);
+            else if (e.key === 'ArrowRight') carouselStep(1);
+            else if (e.key === 'Escape') closePlayerModal();
+        });
+
+        (function setupCarouselSwipe() {
+            const el = document.getElementById('playerCardsGrid');
+            let startX = null;
+            el.addEventListener('pointerdown', e => { startX = e.clientX; });
+            el.addEventListener('pointerup', e => {
+                if (startX === null) return;
+                const dx = e.clientX - startX;
+                startX = null;
+                if (Math.abs(dx) > 50) carouselStep(dx < 0 ? 1 : -1);
+            });
+            el.addEventListener('pointerleave', () => { startX = null; });
+        })();
+
+        window.addEventListener('resize', () => { if (carouselWrappers.length) updateCarousel(); });
+
+        function handleTilt(e, card) {
+            const wrap = card.closest('.player-card-wrapper');
+            if (wrap && !wrap.classList.contains('is-active')) return;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -12;
+            const rotateY = ((x - centerX) / centerX) * 12;
+
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+        }
+
+        function resetTilt(card) {
+            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        }
+
+        // ========================================================
+        // GOOGLE SHEETS DYNAMIC ACTIVITIES FETCH SYSTEM
+        // ========================================================
+        const SHEET_ID = '1AIFwSUm-4Z5oHOUBLkwrnohY8ugnCWuODYNDXixYvfw';
+        const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQw-EOM_12WRvtM4jFcmhicB-MFG2Jl2dYDaTIgfd8ZGRuHe76BDjIKvWxV9xYJwHQdAGGT_6qXCCes/pub?output=csv';
+
+        function fixUrl(url, defaultFallback = '#') {
+            if (!url) return defaultFallback;
+            let clean = url.trim();
+            if (!clean) return defaultFallback;
+            if (clean.startsWith('http://') || clean.startsWith('https://')) return clean;
+            if (clean.startsWith('photo-')) return `https://images.unsplash.com/${clean}`;
+            return `https://${clean}`;
+        }
+
+        async function fetchGoogleSheetActivities() {
+            const container = document.getElementById('activities-container');
+            if (!container) return;
+
+            let activities = [];
+
+            try {
+                const gvizUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+                const res = await fetch(gvizUrl);
+                const text = await res.text();
+                const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
+                if (jsonMatch && jsonMatch[1]) {
+                    const data = JSON.parse(jsonMatch[1]);
+                    const rows = data.table.rows;
+                    rows.forEach(r => {
+                        const c = r.c;
+                        if (c && c[0] && c[0].v) {
+                            const rawTitle = String(c[0].v).trim();
+                            if (rawTitle.toLowerCase() === 'title') return;
+
+                            activities.push({
+                                title: rawTitle,
+                                category: (c[1] && c[1].v) ? String(c[1].v) : 'Event',
+                                date: (c[2] && c[2].v) ? String(c[2].v) : 'Upcoming',
+                                image: fixUrl(c[3] ? String(c[3].v) : '', 'https://images.unsplash.com/photo-1542751371-adc38448a05e'),
+                                description: (c[4] && c[4].v) ? String(c[4].v) : '',
+                                link: fixUrl(c[5] ? String(c[5].v) : '', '#')
+                            });
+                        }
+                    });
+                }
+            } catch (err) {
+                console.warn('GViz fetch failed, trying CSV fallback...', err);
+            }
+
+            if (activities.length === 0 && GOOGLE_SHEET_CSV_URL) {
+                try {
+                    const res = await fetch(GOOGLE_SHEET_CSV_URL);
+                    const csvText = await res.text();
+                    const lines = csvText.split(/\r?\n/).map(row => row.trim()).filter(row => row.length > 0);
+                    for (let i = 1; i < lines.length; i++) {
+                        const cols = lines[i].split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
+                        if (cols.length >= 2 && cols[0]) {
+                            const rawTitle = cols[0].trim();
+                            if (rawTitle.toLowerCase() === 'title') continue;
+
+                            activities.push({
+                                title: rawTitle,
+                                category: cols[1] || 'Event',
+                                date: cols[2] || 'Upcoming',
+                                image: fixUrl(cols[3], 'https://images.unsplash.com/photo-1542751371-adc38448a05e'),
+                                description: cols[4] || '',
+                                link: fixUrl(cols[5], '#')
+                            });
+                        }
+                    }
+                } catch (err) {
+                    console.error('CSV fetch failed:', err);
+                }
+            }
+
+            if (activities.length > 0) {
+                container.innerHTML = ''; 
+                activities.forEach(act => {
+                    const card = document.createElement('div');
+                    card.className = 'relative h-[420px] sm:h-[480px] md:h-[540px] rounded-2xl overflow-hidden border border-white/10 flex flex-col justify-between p-5 sm:p-6 md:p-8 group cursor-pointer transition-all duration-500 hover:border-brand-primary/60';
+                    card.innerHTML = `
+                        <img src="${act.image}" alt="${act.title}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-0" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/70 z-10 group-hover:from-black/90 transition-colors"></div>
+                        
+                        <div class="relative z-20">
+                            <p class="text-gray-300 text-xs sm:text-sm font-medium mb-1 drop-shadow">${act.description || act.category}</p>
+                            <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight leading-none drop-shadow-md">${act.title}</h3>
+                        </div>
+
+                        <div class="relative z-20 flex flex-wrap sm:flex-nowrap justify-between items-end gap-3">
+                            <a href="${act.link}" target="_blank" class="bg-white text-gray-950 font-bold text-xs sm:text-sm px-5 py-2.5 sm:px-6 sm:py-3 rounded-md hover:bg-brand-primary hover:text-white transition-all duration-300 shadow-lg text-center">
+                                More Info
+                            </a>
+                            <span class="text-[11px] sm:text-xs font-mono text-gray-400 bg-black/50 backdrop-blur-md px-3 py-1 rounded-md border border-gray-700 shrink-0">${act.date}</span>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchGoogleSheetActivities);
+    </script>
+    <script>
+        (function () {
+            const viewer = document.getElementById('heroLogo3D');
+            const flat = document.getElementById('heroLogo2D');
+            if (!viewer || !flat) return;
+
+            const MAX_TURN  = 28;
+            const MAX_NOD   = 12;
+            const BASE_NOD  = 90;
+            const SMOOTH    = 0.08;
+            const DIRECTION = 1;
+
+            let targetTheta = 0, targetPhi = BASE_NOD;
+            let theta = 0, phi = BASE_NOD;
+            let running = false;
+
+            const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+            window.addEventListener('pointermove', (e) => {
+                const r = viewer.getBoundingClientRect();
+                if (!r.width) return;
+                const nx = clamp((e.clientX - (r.left + r.width / 2)) / (window.innerWidth / 2), -1, 1);
+                const ny = clamp((e.clientY - (r.top + r.height / 2)) / (window.innerHeight / 2), -1, 1);
+                targetTheta = -nx * MAX_TURN * DIRECTION;
+                targetPhi = BASE_NOD - ny * MAX_NOD;
+            });
+
+            document.addEventListener('pointerleave', () => { targetTheta = 0; targetPhi = BASE_NOD; });
+
+            function tick() {
+                theta += (targetTheta - theta) * SMOOTH;
+                phi   += (targetPhi - phi) * SMOOTH;
+                const t = clamp(theta, -MAX_TURN, MAX_TURN);
+                const ph = clamp(phi, BASE_NOD - MAX_NOD, BASE_NOD + MAX_NOD);
+                viewer.cameraOrbit = `${t}deg ${ph}deg auto`;
+                if (running) requestAnimationFrame(tick);
+            }
+
+            viewer.addEventListener('load', () => {
+                flat.style.display = 'none';
+                viewer.classList.remove('absolute', 'opacity-0', 'pointer-events-none');
+                running = true;
+                requestAnimationFrame(tick);
+            });
+            viewer.addEventListener('error', () => {
+                console.warn('3D logo not loaded, keeping 2D logo.');
+                running = false;
+                viewer.remove();
+            });
+
+            // Only load relative .glb when hosted on an HTTP/HTTPS origin so sandboxed previews don't throw URL parse errors
+            try {
+                if (window.location.protocol.startsWith('http') && window.location.origin && window.location.origin !== 'null') {
+                    viewer.src = new URL('uts-logo.glb', window.location.href).href;
+                } else {
+                    viewer.remove();
+                }
+            } catch (err) {
+                viewer.remove();
+            }
+        })();
+    </script>
+</body>
+</html>
