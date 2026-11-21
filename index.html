@@ -8,10 +8,10 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Chakra Petch + Oxanium + Space Grotesk + JetBrains Mono + Barlow Condensed -->
+    <!-- Google Fonts (Chakra Petch + Oxanium + Space Grotesk + JetBrains Mono + Barlow Condensed) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800;1,900&family=Chakra+Petch:ital,wght@0,600;0,700;1,700&family=JetBrains+Mono:wght@500;700&family=Oxanium:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800;1,900&family=Chakra+Petch:ital,wght@0,600;0,700;1,700&family=JetBrains+Mono:wght@500;700&family=Oxanium:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -49,17 +49,15 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* High-legibility tactical esports display font */
         .font-esports {
             font-family: 'Chakra Petch', sans-serif;
             letter-spacing: 0.01em;
         }
 
-        /* Crisp geometric font for prices and numeric readouts */
         .font-price {
             font-family: 'Oxanium', sans-serif;
             font-variant-numeric: tabular-nums;
-            letter-spacing: 0.02em;
+            letter-spacing: -0.01em;
         }
 
         .font-division {
@@ -149,6 +147,9 @@
             .division-accordion {
                 flex-direction: column;
                 height: 1000px;
+            }
+            .division-card {
+                filter: grayscale(10%) brightness(0.85);
             }
         }
 
@@ -249,7 +250,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="#" class="font-esports text-2xl tracking-wider flex items-center gap-3">
-                        <img src="main.png" alt="UTS Swan Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/200%22 viewBox=%220 0 200 200%22%3E%3Cpolygon points=%22100,14 176,58 176,142 100,186 24,142 24,58%22 fill=%22%23040b16%22 stroke=%22%232563eb%22 stroke-width=%228%22/%3E%3Ctext x=%22100%22 y=%22112%22 text-anchor=%22middle%22 fill=%22%23ffffff%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2248%22%3EUTS%3C/text%3E%3C/svg%3E';" class="w-12 h-12 object-contain drop-shadow-[0_0_10px_rgba(37,99,235,0.6)]">
+                        <img src="main.png" alt="UTS Swan Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Cpolygon points=%22100,14 176,58 176,142 100,186 24,142 24,58%22 fill=%22%23040b16%22 stroke=%22%232563eb%22 stroke-width=%228%22/%3E%3Ctext x=%22100%22 y=%22114%22 text-anchor=%22middle%22 fill=%22%23ffffff%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2254%22%3EUTS%3C/text%3E%3C/svg%3E';" class="w-12 h-12 object-contain drop-shadow-[0_0_10px_rgba(37,99,235,0.6)]">
                     </a>
                 </div>
 
@@ -265,7 +266,7 @@
                     <a href="#contact" class="text-gray-300 hover:text-brand-primary transition-colors font-medium text-sm uppercase tracking-widest">Contact</a>
                     
                     <a href="https://discord.com" target="_blank" class="btn-slant btn-primary px-6 py-2 rounded-sm cursor-pointer">
-                        <span class="btn-slant-content font-esports font-bold tracking-wide"><i class="fa-brands fa-discord mr-2"></i> Join Discord</span>
+                        <span class="btn-slant-content font-esports tracking-wide"><i class="fa-brands fa-discord mr-2"></i> Join Discord</span>
                     </a>
                 </div>
 
@@ -309,7 +310,7 @@
         <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center w-full">
             <div class="w-full md:w-2/3 text-center md:text-left">
                 <span class="text-brand-primary font-mono font-bold tracking-[0.15em] uppercase text-xs md:text-sm mb-4 block">Welcome to the official website of</span>
-                <h1 class="font-esports text-5xl md:text-7xl lg:text-8xl font-bold leading-none mb-6 uppercase tracking-tight">
+                <h1 class="font-esports text-5xl md:text-7xl lg:text-8xl font-extrabold leading-none mb-6 uppercase">
                     UTS <br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary text-glow-primary">Esports Club</span>
                 </h1>
@@ -319,10 +320,10 @@
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <a href="#teams" class="btn-slant btn-primary px-8 py-4 rounded-sm">
-                        <span class="btn-slant-content font-esports font-bold text-base uppercase tracking-wider">Explore Teams</span>
+                        <span class="btn-slant-content font-esports text-base uppercase tracking-wider">Explore Teams</span>
                     </a>
                     <a href="#merch" class="btn-slant border border-white/30 px-8 py-4 rounded-sm hover:bg-white/10 transition-colors">
-                        <span class="btn-slant-content font-esports font-bold text-base uppercase tracking-wider text-white"><i class="fa-solid fa-shirt mr-2 text-brand-accent"></i> Official Merch</span>
+                        <span class="btn-slant-content font-esports text-base uppercase tracking-wider text-white"><i class="fa-solid fa-shirt mr-2 text-brand-accent"></i> Official Merch</span>
                     </a>
                 </div>
             </div>
@@ -370,7 +371,7 @@
         <div class="division-accordion w-full mx-auto">
             
             <!-- MLBB -->
-            <div class="division-card group border-r border-gray-800 last:border-r-0 cursor-pointer overflow-hidden relative">
+            <div onclick="openPlayerModal('MLBB')" role="button" tabindex="0" class="division-card group border-r border-gray-800 last:border-r-0 cursor-pointer overflow-hidden relative">
                 <img src="https://wallpapers.com/images/featured/mobile-legends-v0u46grjbqc6h9ga.jpg" onerror="this.src='https://placehold.co/1920x1080/040b16/2563eb?text=MLBB'" alt="MLBB" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#020610] via-[#020610]/70 to-transparent group-hover:from-[#010409]/90 group-hover:via-[#010409]/60 group-hover:to-transparent transition-colors duration-500"></div>
                 
@@ -385,14 +386,13 @@
                 </div>
 
                 <div class="absolute inset-0 flex flex-col items-center justify-end pb-12 z-20 transition-transform duration-500 group-hover:-translate-y-4 px-4">
-                    <!-- Custom MLBB Logo + Clean Styled Emblem Fallback -->
                     <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bc44799a-519b-4897-ac26-bdb823d86a91/ditxyij-03f35ff9-2859-4808-a896-0d0aaca26633.png/v1/fill/w_1280,h_480/mobile_legends_bang_bang_new_logo_png_by_eclipwsed_ditxyij-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDgwIiwicGF0aCI6Ii9mL2JjNDQ3OTlhLTUxOWItNDg5Ny1hYzI2LWJkYjgyM2Q4NmE5MS9kaXR4eWlqLTAzZjM1ZmY5LTI4NTktNDgwOC1hODk2LTBkMGFhY2EyNjYzMy5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.84-_-7JkpNNtcFRQLYxP5eDKdTW3Vk8g0ULgYbHSU-M" 
                          alt="Mobile Legends: Bang Bang Logo" 
-                         onerror="this.onerror=null; this.outerHTML='<div class=\'mb-8 text-center select-none transition-transform duration-500 group-hover:scale-125 md:group-hover:scale-[1.35]\'><span class=\'font-mono text-[10px] tracking-[0.35em] text-yellow-400 uppercase block mb-1\'>5V5 MOBA</span><h3 class=\'font-esports text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-blue-100 to-yellow-300 tracking-wider uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]\'>MOBILE LEGENDS</h3><span class=\'font-esports text-sm md:text-base font-bold tracking-[0.3em] text-yellow-400 uppercase block mt-0.5\'>BANG BANG</span></div>';"
+                         onerror="this.onerror=null; this.outerHTML='<div class=\'mb-8 text-center select-none transition-transform duration-500 group-hover:scale-125 md:group-hover:scale-[1.35]\'><span class=\'font-mono text-[10px] tracking-[0.35em] text-yellow-400 uppercase block mb-1\'>5V5 MOBA</span><h3 class=\'font-esports text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-blue-100 to-yellow-300 tracking-wider uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]\'>MOBILE LEGENDS</h3><span class=\'font-esports text-sm md:text-base font-extrabold tracking-[0.3em] text-yellow-400 uppercase block mt-0.5\'>BANG BANG</span></div>';"
                          class="h-24 md:h-28 w-auto max-w-[85%] object-contain mb-8 drop-shadow-[0_5px_12px_rgba(0,0,0,0.9)] transition-transform duration-500 group-hover:scale-125 md:group-hover:scale-[1.35] z-20">
                     
-                    <button onclick="openPlayerModal('MLBB')" class="relative group/btn inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20 cursor-pointer">
-                        <div class="absolute inset-0 border-2 border-brand-primary transform skew-x-[-15deg] group-hover/btn:bg-brand-primary transition-colors duration-300"></div>
+                    <button type="button" onclick="event.stopPropagation(); openPlayerModal('MLBB')" class="relative group/btn inline-block opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-8 md:group-hover:translate-y-0 z-20 cursor-pointer">
+                        <div class="absolute inset-0 border-2 border-brand-primary bg-brand-dark/80 transform skew-x-[-15deg] group-hover/btn:bg-brand-primary transition-colors duration-300"></div>
                         <span class="relative z-10 px-8 py-3 block font-bold uppercase text-brand-primary group-hover/btn:text-white transition-colors duration-300 text-sm tracking-wider">
                             View Teams (1 &amp; 2)
                         </span>
@@ -401,7 +401,7 @@
             </div>
             
             <!-- PUBG MOBILE -->
-            <div class="division-card group border-r border-gray-800 last:border-r-0 cursor-pointer overflow-hidden relative">
+            <div onclick="openPlayerModal('PUBG')" role="button" tabindex="0" class="division-card group border-r border-gray-800 last:border-r-0 cursor-pointer overflow-hidden relative">
                 <img src="https://images.wallpapersden.com/image/download/pubg-warrior-4k-city-sunset_bmdoaG6UmZqaraWkpJRobWllrWdma2U.jpg" onerror="this.src='https://placehold.co/1920x1080/040b16/2563eb?text=PUBG'" alt="PUBG Mobile" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#020610] via-[#020610]/70 to-transparent group-hover:from-[#010409]/90 group-hover:via-[#010409]/60 group-hover:to-transparent transition-colors duration-500"></div>
                 
@@ -418,11 +418,11 @@
                 <div class="absolute inset-0 flex flex-col items-center justify-end pb-12 z-20 transition-transform duration-500 group-hover:-translate-y-4">
                     <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/be59a4b8-8b3d-48c8-aa0c-226a9b247220/ddoehro-26145128-dffd-4cc6-a674-1279b420c490.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9iZTU5YTRiOC04YjNkLTQ4YzgtYWEwYy0yMjZhOWIyNDcyMjAvZGRvZWhyby0yNjE0NTEyOC1kZmZkLTRjYzYtYTY3NC0xMjc5YjQyMGM0OTAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ZL3iQPgMKaalI1Sfddg0cAkfracKbmUsOfbUqtAufrA" 
                          alt="PUBG Mobile Logo" 
-                         onerror="this.onerror=null; this.outerHTML='<h3 class=\'font-esports text-4xl md:text-5xl font-bold text-white mb-8 tracking-wider text-center drop-shadow-lg\'>PUBG MOBILE</h3>';"
+                         onerror="this.onerror=null; this.outerHTML='<h3 class=\'font-esports text-4xl md:text-5xl text-white mb-8 tracking-wider text-center drop-shadow-lg\'>PUBG MOBILE</h3>';"
                          class="w-44 md:w-56 h-auto mb-8 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-110 z-20">
                     
-                    <button onclick="openPlayerModal('PUBG')" class="relative group/btn inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20 cursor-pointer">
-                        <div class="absolute inset-0 border-2 border-brand-primary transform skew-x-[-15deg] group-hover/btn:bg-brand-primary transition-colors duration-300"></div>
+                    <button type="button" onclick="event.stopPropagation(); openPlayerModal('PUBG')" class="relative group/btn inline-block opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-8 md:group-hover:translate-y-0 z-20 cursor-pointer">
+                        <div class="absolute inset-0 border-2 border-brand-primary bg-brand-dark/80 transform skew-x-[-15deg] group-hover/btn:bg-brand-primary transition-colors duration-300"></div>
                         <span class="relative z-10 px-8 py-3 block font-bold uppercase text-brand-primary group-hover/btn:text-white transition-colors duration-300 text-sm tracking-wider">
                             View Players
                         </span>
@@ -431,7 +431,7 @@
             </div>
 
             <!-- VALORANT -->
-            <div class="division-card group border-r border-gray-800 last:border-r-0 cursor-pointer overflow-hidden relative">
+            <div onclick="openPlayerModal('VALORANT')" role="button" tabindex="0" class="division-card group border-r border-gray-800 last:border-r-0 cursor-pointer overflow-hidden relative">
                 <img src="https://images.wallpapersden.com/image/download/valorant-viper-art_bGhoZWmUmZqaraWkpJRobWllrWdoa24.jpg" onerror="this.src='https://placehold.co/1920x1080/040b16/2563eb?text=VALORANT'" alt="Valorant" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#020610] via-[#020610]/70 to-transparent group-hover:from-[#010409]/90 group-hover:via-[#010409]/60 group-hover:to-transparent transition-colors duration-500"></div>
                 
@@ -448,11 +448,11 @@
                 <div class="absolute inset-0 flex flex-col items-center justify-end pb-12 z-20 transition-transform duration-500 group-hover:-translate-y-4">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version.svg" 
                          alt="Valorant Logo" 
-                         onerror="this.onerror=null; this.outerHTML='<h3 class=\'font-esports text-4xl md:text-5xl font-bold text-white mb-8 tracking-wider text-center drop-shadow-lg\'>VALORANT</h3>';"
+                         onerror="this.onerror=null; this.outerHTML='<h3 class=\'font-esports text-4xl md:text-5xl text-white mb-8 tracking-wider text-center drop-shadow-lg\'>VALORANT</h3>';"
                          class="w-44 md:w-56 h-auto mb-8 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-110 z-20">
                     
-                    <button onclick="openPlayerModal('VALORANT')" class="relative group/btn inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20 cursor-pointer">
-                        <div class="absolute inset-0 border-2 border-brand-primary transform skew-x-[-15deg] group-hover/btn:bg-brand-primary transition-colors duration-300"></div>
+                    <button type="button" onclick="event.stopPropagation(); openPlayerModal('VALORANT')" class="relative group/btn inline-block opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-8 md:group-hover:translate-y-0 z-20 cursor-pointer">
+                        <div class="absolute inset-0 border-2 border-brand-primary bg-brand-dark/80 transform skew-x-[-15deg] group-hover/btn:bg-brand-primary transition-colors duration-300"></div>
                         <span class="relative z-10 px-8 py-3 block font-bold uppercase text-brand-primary group-hover/btn:text-white transition-colors duration-300 text-sm tracking-wider">
                             View Players
                         </span>
@@ -473,11 +473,11 @@
                     <span class="text-brand-accent font-mono font-bold tracking-widest text-[10px] mb-3 uppercase border border-brand-accent px-3 py-1 bg-brand-dark/80 shadow-[0_0_10px_rgba(96,165,250,0.3)]">Upcoming</span>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Apex_Legends_logo.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" 
                          alt="Apex Legends Logo" 
-                         onerror="this.onerror=null; this.outerHTML='<h3 class=\'font-esports text-4xl md:text-5xl font-bold text-gray-400 mb-8 tracking-wider text-center opacity-80 group-hover:opacity-100 transition-opacity\'>APEX LEGENDS</h3>';"
+                         onerror="this.onerror=null; this.outerHTML='<h3 class=\'font-esports text-4xl md:text-5xl text-gray-400 mb-8 tracking-wider text-center opacity-80 group-hover:opacity-100 transition-opacity\'>APEX LEGENDS</h3>';"
                          class="w-32 md:w-40 h-auto mb-8 opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110 filter invert z-20">
                     
-                    <div class="relative group/btn inline-block opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-8 group-hover:translate-y-0 z-20">
-                        <div class="absolute inset-0 border-2 border-gray-600 transform skew-x-[-15deg] transition-colors duration-300"></div>
+                    <div class="relative group/btn inline-block opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-8 md:group-hover:translate-y-0 z-20">
+                        <div class="absolute inset-0 border-2 border-gray-600 bg-brand-dark/80 transform skew-x-[-15deg] transition-colors duration-300"></div>
                         <span class="relative z-10 px-8 py-3 block font-bold uppercase text-gray-400 transition-colors duration-300 text-sm tracking-wider cursor-not-allowed">
                             Coming Soon
                         </span>
@@ -490,7 +490,7 @@
     </section>
 
     <!-- ======================================================== -->
-    <!-- CLUB ACHIEVEMENTS & TROPHY HALL SECTION                  -->
+    <!-- CLUB ACHIEVEMENTS & TROPHY HALL (OPTION A PHOTO BANNER)  -->
     <!-- ======================================================== -->
     <section id="achievements" class="py-16 md:py-24 bg-[#030711] merch-grid-bg relative border-t border-brand-primary/20 overflow-hidden">
         <!-- Ambient Glow Accents -->
@@ -505,7 +505,7 @@
                         <i class="fa-solid fa-trophy text-yellow-400 text-xs"></i>
                         <span class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-yellow-300">UTS // HALL OF FAME</span>
                     </div>
-                    <h2 class="font-esports text-4xl sm:text-5xl md:text-6xl font-bold uppercase text-white leading-none">
+                    <h2 class="font-esports text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase text-white leading-none">
                         CLUB <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-yellow-300">ACHIEVEMENTS</span>
                     </h2>
                     <p class="text-gray-400 mt-3 text-sm md:text-base max-w-2xl">
@@ -530,7 +530,7 @@
                 </div>
             </div>
 
-            <!-- Achievements Trophy Grid (Populated via achievementsData in JS) -->
+            <!-- Achievements Trophy Grid (Option A: 16:9 Photo Banner + Overlapping Trophy Badge) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="achievements-grid"></div>
         </div>
     </section>
@@ -543,7 +543,7 @@
                     <div class="flex items-center gap-2 text-brand-accent font-mono font-bold uppercase tracking-widest text-xs mb-2">
                         <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span> Live Committee Updates
                     </div>
-                    <h2 class="font-esports text-3xl sm:text-4xl md:text-5xl font-bold uppercase flex items-center gap-3">
+                    <h2 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase flex items-center gap-3">
                         <i class="fa-solid fa-calendar-check text-brand-primary"></i> 
                         Club Activities & Events
                     </h2>
@@ -561,7 +561,7 @@
                     
                     <div class="relative z-20">
                         <p class="text-gray-300 text-xs sm:text-sm font-medium mb-1 drop-shadow">The leading esports organisation in Sibu</p>
-                        <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-tight leading-none drop-shadow-md">WE COMPETE</h3>
+                        <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight leading-none drop-shadow-md">WE COMPETE</h3>
                     </div>
 
                     <div class="relative z-20 flex flex-wrap sm:flex-nowrap justify-between items-end gap-3">
@@ -579,7 +579,7 @@
                     
                     <div class="relative z-20">
                         <p class="text-gray-300 text-xs sm:text-sm font-medium mb-1 drop-shadow">The Royal Blue & Swan Family</p>
-                        <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-tight leading-none drop-shadow-md">WE CONNECT</h3>
+                        <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight leading-none drop-shadow-md">WE CONNECT</h3>
                     </div>
 
                     <div class="relative z-20 flex flex-wrap sm:flex-nowrap justify-between items-end gap-3">
@@ -597,7 +597,7 @@
                     
                     <div class="relative z-20">
                         <p class="text-gray-300 text-xs sm:text-sm font-medium mb-1 drop-shadow">We stay ahead of the curve</p>
-                        <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-tight leading-none drop-shadow-md">WE INNOVATE</h3>
+                        <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight leading-none drop-shadow-md">WE INNOVATE</h3>
                     </div>
 
                     <div class="relative z-20 flex flex-wrap sm:flex-nowrap justify-between items-end gap-3">
@@ -628,7 +628,7 @@
                         <span class="w-2 h-2 bg-brand-primary inline-block"></span>
                         <span class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-gray-300">UTS // PRO APPAREL COLLECTION 2026</span>
                     </div>
-                    <h2 class="font-esports text-4xl sm:text-5xl md:text-6xl font-bold uppercase text-white leading-none">
+                    <h2 class="font-esports text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase text-white leading-none">
                         OFFICIAL <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">MERCH</span>
                     </h2>
                 </div>
@@ -668,12 +668,12 @@
 
                         <!-- Product Details -->
                         <div class="p-6">
-                            <div class="flex justify-between items-start gap-3 mb-2">
+                            <div class="flex justify-between items-start gap-4 mb-2">
                                 <div>
                                     <span class="font-mono text-xs text-brand-accent uppercase tracking-wider block mb-1">Official Matchwear</span>
-                                    <h3 class="font-esports text-xl sm:text-2xl font-bold text-white uppercase leading-tight tracking-wide">2026 Pro Team Jersey</h3>
+                                    <h3 class="font-esports text-2xl font-bold text-white uppercase leading-tight">2026 Pro Team Jersey</h3>
                                 </div>
-                                <span class="font-price text-xl sm:text-2xl font-extrabold text-brand-accent whitespace-nowrap shrink-0 pt-5">RM 89</span>
+                                <span class="font-price text-2xl font-extrabold text-white whitespace-nowrap shrink-0">RM 89</span>
                             </div>
                             <p class="text-gray-400 text-sm mb-5">
                                 Breathable sublimation esports jersey with embroidered UTS Swan crest and optional back IGN print.
@@ -736,12 +736,12 @@
 
                         <!-- Product Details -->
                         <div class="p-6">
-                            <div class="flex justify-between items-start gap-3 mb-2">
+                            <div class="flex justify-between items-start gap-4 mb-2">
                                 <div>
                                     <span class="font-mono text-xs text-brand-accent uppercase tracking-wider block mb-1">Lifestyle Tee</span>
-                                    <h3 class="font-esports text-xl sm:text-2xl font-bold text-white uppercase leading-tight tracking-wide">UTS Swan Heavy Tee</h3>
+                                    <h3 class="font-esports text-2xl font-bold text-white uppercase leading-tight">UTS Swan Heavy Tee</h3>
                                 </div>
-                                <span class="font-price text-xl sm:text-2xl font-extrabold text-brand-accent whitespace-nowrap shrink-0 pt-5">RM 49</span>
+                                <span class="font-price text-2xl font-extrabold text-white whitespace-nowrap shrink-0">RM 49</span>
                             </div>
                             <p class="text-gray-400 text-sm mb-5">
                                 Heavyweight 240GSM combed cotton streetwear tee with bold front geometric Swan emblem and back roster print.
@@ -807,12 +807,12 @@
 
                         <!-- Product Details -->
                         <div class="p-6">
-                            <div class="flex justify-between items-start gap-3 mb-2">
+                            <div class="flex justify-between items-start gap-4 mb-2">
                                 <div>
                                     <span class="font-mono text-xs text-brand-accent uppercase tracking-wider block mb-1">High Cultured // Outerwear</span>
-                                    <h3 class="font-esports text-xl sm:text-2xl font-bold text-white uppercase leading-tight tracking-wide">Street Era Rawline Trucker Jacket</h3>
+                                    <h3 class="font-esports text-2xl font-bold text-white uppercase leading-tight">Street Era Rawline Trucker Jacket</h3>
                                 </div>
-                                <span class="font-price text-xl sm:text-2xl font-extrabold text-brand-accent whitespace-nowrap shrink-0 pt-5">RM 199.90</span>
+                                <span class="font-price text-2xl font-extrabold text-white whitespace-nowrap shrink-0">RM 199.90</span>
                             </div>
                             <p class="text-gray-400 text-sm mb-5">
                                 100% French Terry Cotton (330gsm) industrial trucker jacket with front &amp; back embroidery, overlock stitching, and rubber badge.
@@ -860,7 +860,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <span class="text-brand-accent font-mono font-bold tracking-[0.2em] uppercase text-xs sm:text-sm block mb-2">UTS Esports Board of Directors</span>
-                <h2 class="font-esports text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-wider text-white">
+                <h2 class="font-esports text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-wider text-white">
                     25/26 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">EXCO Committee</span>
                 </h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-brand-primary to-transparent mx-auto mt-4 rounded-full"></div>
@@ -1056,7 +1056,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                 <div class="col-span-1">
-                    <a href="#" class="font-esports text-3xl font-bold tracking-wider flex items-center gap-3 mb-6">
+                    <a href="#" class="font-esports text-3xl font-extrabold tracking-wider flex items-center gap-3 mb-6">
                         <img src="main.png" alt="UTS Swan Logo" class="w-8 h-8 object-contain">
                         <span class="text-white">UTS<span class="text-brand-primary">ESPORTS</span></span>
                     </a>
@@ -1127,14 +1127,14 @@
     </footer>
 
     <!-- Merch Pre-Order Modal (Connected to Google Sheets) -->
-    <div id="merchModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div id="merchModal" class="fixed inset-0 z-[100] hidden bg-black/85 backdrop-blur-md items-center justify-center p-4" onclick="if(event.target === this) closeMerchModal()">
         <div class="relative w-full max-w-md bg-[#081224] border border-brand-primary/50 rounded-2xl shadow-2xl p-6 sm:p-8">
             <div class="flex justify-between items-start pb-4 border-b border-white/10">
                 <div>
                     <span class="font-mono text-[11px] text-brand-accent uppercase tracking-widest block">UTS ESPORTS PRO SHOP // GOOGLE SHEET SYNC</span>
                     <h3 class="font-esports text-2xl font-bold text-white uppercase mt-0.5" id="merchModalItem">MERCH PRE-ORDER</h3>
                 </div>
-                <button onclick="closeMerchModal()" class="w-9 h-9 rounded-full bg-brand-card hover:bg-brand-primary border border-gray-700 text-gray-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+                <button type="button" onclick="closeMerchModal()" class="w-9 h-9 rounded-full bg-brand-card hover:bg-brand-primary border border-gray-700 text-gray-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -1164,10 +1164,6 @@
                     <input type="text" id="orderCustomIgn" maxlength="16" placeholder="e.g. JINBEI" class="w-full bg-brand-dark border border-white/15 focus:border-brand-primary rounded-lg px-3.5 py-2.5 text-sm text-white uppercase font-mono outline-none">
                 </div>
 
-                <p id="merchOrderError" class="hidden text-xs font-mono text-red-400 bg-red-500/10 border border-red-500/30 rounded-lg px-3 py-2">
-                    Network error submitting order. Please try again.
-                </p>
-
                 <button type="submit" id="merchSubmitBtn" class="w-full py-3.5 bg-brand-primary hover:bg-blue-500 text-white font-esports font-bold text-sm uppercase tracking-wider rounded-lg transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2">
                     <span>Confirm Reservation</span>
                 </button>
@@ -1179,32 +1175,27 @@
                     <i class="fa-solid fa-check"></i>
                 </div>
                 <div>
-                    <span id="merchSyncBadge" class="font-mono text-[11px] text-emerald-400 uppercase tracking-widest block">LOGGED TO SHEET</span>
+                    <span class="font-mono text-[11px] text-emerald-400 uppercase tracking-widest block">LOGGED TO SHEET</span>
                     <h4 class="font-esports text-2xl font-bold text-white uppercase mt-1">PRE-ORDER CONFIRMED</h4>
-                    <p class="text-gray-400 text-xs mt-1 leading-relaxed" id="merchReceiptSummary"></p>
+                    <p class="text-gray-400 text-xs mt-1" id="merchReceiptSummary"></p>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
-                    <button type="button" id="copyOrderSlipBtn" onclick="copyMerchOrderSlip()" class="flex-1 py-3 bg-brand-card hover:bg-brand-primary/20 text-brand-accent border border-brand-primary/40 font-mono font-bold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer">
-                        <i class="fa-regular fa-copy mr-1.5"></i>Copy Order Slip
-                    </button>
-                    <button type="button" onclick="closeMerchModal()" class="flex-1 py-3 bg-white text-gray-950 hover:bg-brand-primary hover:text-white font-esports font-bold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer">
-                        Done
-                    </button>
-                </div>
+                <button type="button" onclick="closeMerchModal()" class="w-full py-3 bg-white text-gray-950 hover:bg-brand-primary hover:text-white font-esports font-bold text-xs uppercase tracking-wider rounded-lg transition-colors cursor-pointer">
+                    Done
+                </button>
             </div>
         </div>
     </div>
 
     <!-- Interactive Player Cards Modal -->
-    <div id="playerModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div id="playerModal" class="fixed inset-0 z-[100] hidden bg-black/90 backdrop-blur-md items-center justify-center p-4 sm:p-6 overflow-y-auto" onclick="if(event.target === this) closePlayerModal()">
         <div class="relative w-full max-w-6xl bg-brand-dark border border-brand-primary/40 rounded-2xl shadow-2xl p-6 sm:p-8 my-auto overflow-hidden">
             <!-- Modal Header -->
             <div class="flex justify-between items-center pb-6 border-b border-gray-800">
                 <div>
                     <span class="text-brand-accent font-mono text-xs font-bold uppercase tracking-widest block" id="modalSubTitle">UTS ESPORTS DIVISION ROSTER</span>
-                    <h3 class="font-esports text-3xl sm:text-4xl font-bold text-white tracking-wider uppercase" id="modalTitle">PLAYER CARDS</h3>
+                    <h3 class="font-esports text-3xl sm:text-4xl font-extrabold text-white tracking-wider uppercase" id="modalTitle">PLAYER CARDS</h3>
                 </div>
-                <button onclick="closePlayerModal()" class="w-10 h-10 rounded-full bg-brand-card hover:bg-brand-primary border border-gray-700 text-gray-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+                <button type="button" onclick="closePlayerModal()" class="w-10 h-10 rounded-full bg-brand-card hover:bg-brand-primary border border-gray-700 text-gray-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
@@ -1218,17 +1209,17 @@
             <!-- Player Carousel -->
             <div class="relative">
                 <div class="player-carousel" id="playerCardsGrid"></div>
-                <button id="carouselPrev" onclick="carouselStep(-1)" aria-label="Previous player" class="carousel-btn left-0 w-11 h-11 rounded-full bg-brand-card/90 hover:bg-yellow-500 border border-gray-700 hover:border-yellow-400 text-gray-200 hover:text-black flex items-center justify-center transition-colors cursor-pointer">
+                <button type="button" id="carouselPrev" onclick="carouselStep(-1)" aria-label="Previous player" class="carousel-btn left-0 w-11 h-11 rounded-full bg-brand-card/90 hover:bg-yellow-500 border border-gray-700 hover:border-yellow-400 text-gray-200 hover:text-black flex items-center justify-center transition-colors cursor-pointer">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
-                <button id="carouselNext" onclick="carouselStep(1)" aria-label="Next player" class="carousel-btn right-0 w-11 h-11 rounded-full bg-brand-card/90 hover:bg-yellow-500 border border-gray-700 hover:border-yellow-400 text-gray-200 hover:text-black flex items-center justify-center transition-colors cursor-pointer">
+                <button type="button" id="carouselNext" onclick="carouselStep(1)" aria-label="Next player" class="carousel-btn right-0 w-11 h-11 rounded-full bg-brand-card/90 hover:bg-yellow-500 border border-gray-700 hover:border-yellow-400 text-gray-200 hover:text-black flex items-center justify-center transition-colors cursor-pointer">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
             <div class="flex flex-col items-center gap-3 mt-4">
                 <div class="flex items-center gap-2" id="carouselDots"></div>
                 <span class="text-[11px] font-mono tracking-widest text-gray-400 uppercase" id="carouselCounter"></span>
-                <button id="gyroBtn" onclick="toggleGyro()" class="hidden px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider border bg-brand-card text-gray-300 border-gray-700 hover:border-yellow-500 transition-all cursor-pointer">
+                <button type="button" id="gyroBtn" onclick="toggleGyro()" class="hidden px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider border bg-brand-card text-gray-300 border-gray-700 hover:border-yellow-500 transition-all cursor-pointer">
                     <i class="fa-solid fa-mobile-screen-button mr-1"></i> <span id="gyroLabel">Enable Gyro</span>
                 </button>
             </div>
@@ -1283,84 +1274,117 @@
         // ========================================================
         // UNIFIED GOOGLE SHEETS CONFIGURATION
         // ========================================================
-        const GOOGLE_SHEETS_CONFIG = {
-            // Main UTS Esports Club Google Sheet ID
-            sheetId: '1AIFwSUm-4Z5oHOUBLkwrnohY8ugnCWuODYNDXixYvfw',
-            // Published CSV fallback for the Activities tab
-            activitiesCsvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQw-EOM_12WRvtM4jFcmhicB-MFG2Jl2dYDaTIgfd8ZGRuHe76BDjIKvWxV9xYJwHQdAGGT_6qXCCes/pub?output=csv',
-            // Optional sheet tab names in the same workbook for live CMS updates:
-            // Achievements columns: Placement | Tier (gold/silver/bronze/blue) | Division | Year | Tournament | Squad | Description
-            achievementsTab: 'Achievements',
-            // Roster columns: Game (MLBB/PUBG/VALORANT) | Team | Handle | RealName | TeamRole | Role | Rarity | PWR | Stat1 | Stat2 | Stat3 | SetCode | ImageURL
-            rosterTab: 'Roster',
-            // Paste your deployed Google Apps Script Web App URL below to log Merch orders directly into a sheet tab:
-            merchOrderWebAppUrl: ''
-        };
+        const SHEET_ID = '1AIFwSUm-4Z5oHOUBLkwrnohY8ugnCWuODYNDXixYvfw';
+        const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQw-EOM_12WRvtM4jFcmhicB-MFG2Jl2dYDaTIgfd8ZGRuHe76BDjIKvWxV9xYJwHQdAGGT_6qXCCes/pub?output=csv';
+        const MERCH_ORDER_SHEET_URL = '';
+
+        function fixUrl(url, defaultFallback = '#') {
+            if (!url) return defaultFallback;
+            let clean = String(url).trim();
+            if (!clean) return defaultFallback;
+            if (clean.startsWith('http://') || clean.startsWith('https://')) return clean;
+            if (clean.startsWith('photo-')) return `https://images.unsplash.com/${clean}`;
+            return `https://${clean}`;
+        }
+
+        function normalizeDivisionKey(raw) {
+            const val = String(raw || '').trim().toUpperCase();
+            if (val === 'PUBGM' || val === 'PUBG MOBILE' || val === 'PUBG') return 'PUBG';
+            if (val === 'MLBB' || val === 'MOBILE LEGENDS') return 'MLBB';
+            if (val === 'VALORANT' || val === 'VAL') return 'VALORANT';
+            return val;
+        }
+
+        async function fetchSheetRows(sheetName) {
+            const url = sheetName
+                ? `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}`
+                : `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+            const res = await fetch(url);
+            const text = await res.text();
+            const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
+            if (!jsonMatch || !jsonMatch[1]) return [];
+            const data = JSON.parse(jsonMatch[1]);
+            return (data.table && data.table.rows) ? data.table.rows : [];
+        }
 
         // ========================================================
-        // CLUB ACHIEVEMENTS DATA & LIVE GOOGLE SHEET SYNC
+        // CLUB ACHIEVEMENTS (OPTION A: PHOTO BANNER + TROPHY BADGE)
+        // Syncs with 'Achievements' tab (Cols A-H: Placement, Tier, Division, Year, Tournament, Squad, Description, Image)
         // ========================================================
+        const DEFAULT_ACHIEVEMENT_IMAGES = {
+            'MLBB': 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop',
+            'VALORANT': 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop',
+            'PUBG MOBILE': 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=1200&auto=format&fit=crop',
+            'DEFAULT': 'https://images.unsplash.com/photo-1560253023-3ec5d502959f?q=80&w=1200&auto=format&fit=crop'
+        };
+
         let achievementsData = [
             {
                 placement: '1ST PLACE // CHAMPION',
                 tier: 'gold',
                 division: 'MLBB',
-                year: '2026',
+                year: '2025',
                 tournament: 'SARAWAK INTERVARSITY ESPORTS CUP',
-                squad: 'UTS SWANS PRIME (TEAM 1)',
-                description: 'Undefeated 3-0 Grand Finals sweep in Kuching, securing back-to-back regional collegiate honors for Sibu.'
+                squad: 'UTS MLBB TEAM 1',
+                description: 'Undefeated 3-0 grand finals sweep representing University of Technology Sarawak.',
+                image: DEFAULT_ACHIEVEMENT_IMAGES['MLBB']
             },
             {
                 placement: '2ND PLACE // RUNNER-UP',
                 tier: 'silver',
                 division: 'VALORANT',
-                year: '2026',
+                year: '2025',
                 tournament: 'BORNEO CAMPUS VALORANT SHOWDOWN',
-                squad: 'UTS VALORANT MAIN ROSTER',
-                description: 'Hard-fought 2-3 overtime thriller in the Grand Finals against top collegiate contenders across East Malaysia.'
+                squad: 'UTS VALORANT MAIN',
+                description: 'Fought through a 32-team intercollegiate bracket to claim silver in Kuching.',
+                image: DEFAULT_ACHIEVEMENT_IMAGES['VALORANT']
             },
             {
                 placement: '1ST PLACE // CHAMPION',
                 tier: 'gold',
                 division: 'PUBG MOBILE',
                 year: '2025',
-                tournament: 'SARAWAK ESPORTS EXPO (SAREX) CAMPUS',
-                squad: 'UTS PUBG MOBILE SQUAD',
-                description: 'Claimed 4 Chicken Dinners across 12 lobby matches with a 28-point lead and tournament MVP honors.'
+                tournament: 'SAREX CAMPUS BATTLE ROYALE',
+                squad: 'UTS PUBG MOBILE',
+                description: 'Secured 4 WWCDs across the final day lobby to top the Sarawak university standings.',
+                image: DEFAULT_ACHIEVEMENT_IMAGES['PUBG MOBILE']
             },
             {
                 placement: '3RD PLACE // PODIUM',
                 tier: 'bronze',
                 division: 'MLBB',
-                year: '2025',
-                tournament: 'MASUM ESPORTS CHAMPIONSHIP',
-                squad: 'UTS SWANS ACADEMY (TEAM 2)',
-                description: 'Secured bronze podium finish representing University of Technology Sarawak in the national university circuit.'
+                year: '2024',
+                tournament: 'BORNEO UNIVERSITY ESPORTS SERIES',
+                squad: 'UTS MLBB TEAM 2',
+                description: 'Clinching podium honors in the regional collegiate lower-bracket finals.',
+                image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1200&auto=format&fit=crop'
             },
             {
                 placement: 'TOP 4 // SEMIFINALIST',
                 tier: 'blue',
                 division: 'VALORANT',
-                year: '2025',
-                tournament: 'MALAYSIA CAMPUS LEAGUE (MCL)',
-                squad: 'UTS VALORANT MAIN ROSTER',
-                description: 'Topped the Borneo qualifier bracket with a 5-1 group stage record before advancing to national playoffs.'
+                year: '2024',
+                tournament: 'NATIONAL INTER-COLLEGIATE LEAGUE',
+                squad: 'UTS VALORANT ROSTER',
+                description: 'Represented Sarawak on the national university stage with a top-four finish.',
+                image: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1200&auto=format&fit=crop'
             },
             {
-                placement: '1ST PLACE & MVP // WWCD',
+                placement: 'WWCD // MVP AWARD',
                 tier: 'gold',
                 division: 'PUBG MOBILE',
                 year: '2024',
-                tournament: 'SIBU CENTRAL REGION ESPORTS OPEN',
-                squad: 'UTS PUBG MOBILE SQUAD',
-                description: 'Dominated the Sibu LAN finals with 64 total eliminations and highest average survival time.'
+                tournament: 'SIBU OPEN ESPORTS SHOWDOWN',
+                squad: 'UTS PUBG MOBILE',
+                description: 'Dominated hometown LAN finals with highest lobby eliminations and tournament MVP.',
+                image: 'https://images.unsplash.com/photo-1560253023-3ec5d502959f?q=80&w=1200&auto=format&fit=crop'
             }
         ];
 
-        let activeAchievementFilter = 'ALL';
+        let currentAchievementFilter = 'ALL';
 
-        function renderAchievements(filter = activeAchievementFilter) {
-            activeAchievementFilter = filter;
+        function renderAchievements(filter = currentAchievementFilter) {
+            currentAchievementFilter = filter;
             const grid = document.getElementById('achievements-grid');
             if (!grid) return;
 
@@ -1370,64 +1394,82 @@
 
             const tierStyles = {
                 gold: {
-                    badge: 'bg-yellow-500/15 text-yellow-300 border-yellow-400/50',
-                    iconWrap: 'bg-yellow-500/15 border-yellow-400/40 text-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.25)]',
+                    badge: 'bg-black/75 backdrop-blur-md text-yellow-300 border-yellow-400/60',
+                    iconWrap: 'bg-[#0b162c] border-yellow-400 text-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.35)]',
                     accentBar: 'from-yellow-400 to-amber-600'
                 },
                 silver: {
-                    badge: 'bg-slate-300/15 text-slate-200 border-slate-300/40',
-                    iconWrap: 'bg-slate-300/10 border-slate-300/35 text-slate-200 shadow-[0_0_20px_rgba(203,213,225,0.2)]',
+                    badge: 'bg-black/75 backdrop-blur-md text-slate-100 border-slate-300/60',
+                    iconWrap: 'bg-[#0b162c] border-slate-300 text-slate-200 shadow-[0_0_20px_rgba(203,213,225,0.25)]',
                     accentBar: 'from-slate-200 to-slate-500'
                 },
                 bronze: {
-                    badge: 'bg-amber-600/15 text-amber-300 border-amber-500/40',
-                    iconWrap: 'bg-amber-600/15 border-amber-500/35 text-amber-300 shadow-[0_0_20px_rgba(217,119,6,0.2)]',
+                    badge: 'bg-black/75 backdrop-blur-md text-amber-300 border-amber-500/60',
+                    iconWrap: 'bg-[#0b162c] border-amber-400 text-amber-300 shadow-[0_0_20px_rgba(217,119,6,0.25)]',
                     accentBar: 'from-amber-400 to-amber-700'
                 },
                 blue: {
-                    badge: 'bg-brand-primary/20 text-brand-accent border-brand-primary/50',
-                    iconWrap: 'bg-brand-primary/15 border-brand-primary/40 text-brand-accent shadow-[0_0_20px_rgba(37,99,235,0.25)]',
+                    badge: 'bg-black/75 backdrop-blur-md text-brand-accent border-brand-primary/70',
+                    iconWrap: 'bg-[#0b162c] border-brand-primary text-brand-accent shadow-[0_0_20px_rgba(37,99,235,0.35)]',
                     accentBar: 'from-brand-accent to-brand-primary'
                 }
             };
 
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-400 font-mono text-sm">No achievements recorded for ${filter} yet.</div>`;
+                return;
+            }
+
             grid.innerHTML = filtered.map(item => {
                 const style = tierStyles[(item.tier || 'blue').toLowerCase()] || tierStyles.blue;
+                const fallbackImg = DEFAULT_ACHIEVEMENT_IMAGES[item.division.toUpperCase()] || DEFAULT_ACHIEVEMENT_IMAGES['DEFAULT'];
+                const bannerImg = item.image || fallbackImg;
+
                 return `
-                    <div class="relative bg-[#070f1d] border border-white/10 hover:border-brand-primary/70 rounded-xl p-6 flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 shadow-xl overflow-hidden">
+                    <div class="relative bg-[#070f1d] border border-white/10 hover:border-brand-primary/70 rounded-xl flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 shadow-xl overflow-hidden">
                         <div>
-                            <!-- Top Meta Row -->
-                            <div class="flex items-center justify-between gap-2 mb-5">
-                                <span class="px-2.5 py-1 rounded-sm border font-mono text-[10px] font-bold uppercase tracking-wider ${style.badge}">
-                                    ${item.placement}
-                                </span>
-                                <span class="font-mono text-xs font-bold text-gray-400 bg-black/50 border border-white/10 px-2.5 py-1 rounded-sm">
-                                    ${item.year}
-                                </span>
+                            <!-- Option A: Top 16:9 Photo Banner -->
+                            <div class="relative h-48 w-full overflow-hidden bg-[#0a1526]">
+                                <img src="${bannerImg}"
+                                     alt="${item.tournament}"
+                                     onerror="this.onerror=null; this.src='${fallbackImg}';"
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#070f1d] via-[#070f1d]/25 to-black/30"></div>
+
+                                <!-- Top Overlay Badges -->
+                                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 z-10">
+                                    <span class="px-2.5 py-1 rounded-sm border font-mono text-[10px] font-bold uppercase tracking-wider shadow-md ${style.badge}">
+                                        ${item.placement}
+                                    </span>
+                                    <span class="font-mono text-xs font-bold text-white bg-black/75 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-sm shadow-md">
+                                        ${item.year}
+                                    </span>
+                                </div>
                             </div>
 
-                            <!-- Trophy Icon + Division -->
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-12 h-12 rounded-lg border flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${style.iconWrap}">
-                                    <i class="fa-solid fa-trophy text-xl"></i>
-                                </div>
-                                <div>
-                                    <span class="font-mono text-[11px] font-bold text-brand-accent uppercase tracking-widest block">
+                            <!-- Card Body with Overlapping Trophy Badge -->
+                            <div class="px-6 pb-5">
+                                <div class="flex items-end gap-3.5 -mt-7 mb-3.5 relative z-20">
+                                    <div class="w-13 h-13 w-12 h-12 rounded-xl border-2 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${style.iconWrap}">
+                                        <i class="fa-solid fa-trophy text-lg"></i>
+                                    </div>
+                                    <span class="font-mono text-[11px] font-bold text-brand-accent uppercase tracking-widest pb-1">
                                         ${item.division}
                                     </span>
-                                    <h3 class="font-esports text-xl font-bold text-white uppercase leading-snug mt-0.5">
-                                        ${item.tournament}
-                                    </h3>
                                 </div>
-                            </div>
 
-                            <p class="text-gray-400 text-sm leading-relaxed mb-5">
-                                ${item.description}
-                            </p>
+                                <h3 class="font-esports text-xl font-bold text-white uppercase leading-snug mb-2">
+                                    ${item.tournament}
+                                </h3>
+
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    ${item.description}
+                                </p>
+                            </div>
                         </div>
 
                         <!-- Bottom Squad Footer -->
-                        <div class="pt-3.5 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+                        <div class="px-6 py-3.5 border-t border-white/10 flex items-center justify-between text-xs font-mono bg-black/20">
                             <span class="text-gray-300 font-bold uppercase tracking-wider">
                                 <i class="fa-solid fa-shield-halved text-brand-primary mr-1.5"></i>${item.squad}
                             </span>
@@ -1435,7 +1477,7 @@
                         </div>
 
                         <!-- Bottom Gradient Accent Line -->
-                        <div class="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r ${style.accentBar} opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r ${style.accentBar} opacity-75 group-hover:opacity-100 transition-opacity"></div>
                     </div>
                 `;
             }).join('');
@@ -1449,6 +1491,40 @@
             btnEl.classList.remove('border-white/15', 'bg-brand-card/80', 'text-gray-300');
             btnEl.classList.add('border-brand-primary', 'bg-brand-primary', 'text-white', 'shadow-[0_0_15px_rgba(37,99,235,0.5)]');
             renderAchievements(division);
+        }
+
+        async function fetchGoogleSheetAchievements() {
+            try {
+                const rows = await fetchSheetRows('Achievements');
+                const parsed = [];
+                rows.forEach(r => {
+                    const c = r.c;
+                    if (c && c[0] && c[0].v) {
+                        const placement = String(c[0].v).trim();
+                        if (placement.toLowerCase() === 'placement') return;
+                        const rawDiv = (c[2] && c[2].v) ? String(c[2].v).trim().toUpperCase() : 'MLBB';
+                        const normalizedDiv = rawDiv === 'PUBGM' || rawDiv === 'PUBG' ? 'PUBG MOBILE' : rawDiv;
+                        const fallbackImg = DEFAULT_ACHIEVEMENT_IMAGES[normalizedDiv] || DEFAULT_ACHIEVEMENT_IMAGES['DEFAULT'];
+
+                        parsed.push({
+                            placement: placement,
+                            tier: (c[1] && c[1].v) ? String(c[1].v).trim().toLowerCase() : 'blue',
+                            division: normalizedDiv,
+                            year: (c[3] && c[3].v) ? String(c[3].v).trim() : '2026',
+                            tournament: (c[4] && c[4].v) ? String(c[4].v).trim() : 'UTS Tournament',
+                            squad: (c[5] && c[5].v) ? String(c[5].v).trim() : 'UTS ESPORTS',
+                            description: (c[6] && c[6].v) ? String(c[6].v).trim() : '',
+                            image: (c[7] && c[7].v) ? fixUrl(c[7].v, fallbackImg) : fallbackImg
+                        });
+                    }
+                });
+                if (parsed.length > 0) {
+                    achievementsData = parsed;
+                    renderAchievements(currentAchievementFilter);
+                }
+            } catch (err) {
+                console.warn('Using built-in achievements data:', err);
+            }
         }
 
         // ========================================================
@@ -1523,7 +1599,6 @@
         }
 
         let currentOrderSelection = { item: '', price: '', color: '', size: 'M' };
-        let lastFormattedOrderSlip = '';
 
         function openMerchOrder(itemName, price, colorName, groupKey, allowCustomIgn) {
             const sizeGroup = document.querySelector(`[data-size-group="${groupKey}"]`);
@@ -1534,52 +1609,27 @@
 
             document.getElementById('merchOrderForm').classList.remove('hidden');
             document.getElementById('merchOrderSuccess').classList.add('hidden');
-            document.getElementById('merchOrderError').classList.add('hidden');
             document.getElementById('merchModalItem').innerText = itemName;
             document.getElementById('merchModalVariant').innerText = `${colorName} · Size ${selectedSize}`;
             document.getElementById('merchModalPrice').innerText = price;
             document.getElementById('customIgnField').style.display = allowCustomIgn ? 'block' : 'none';
-            document.getElementById('merchModal').classList.remove('hidden');
+            const modal = document.getElementById('merchModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
         function closeMerchModal() {
-            document.getElementById('merchModal').classList.add('hidden');
-        }
-
-        function copyMerchOrderSlip() {
-            if (!lastFormattedOrderSlip) return;
-            const tempArea = document.createElement('textarea');
-            tempArea.value = lastFormattedOrderSlip;
-            tempArea.style.position = 'fixed';
-            tempArea.style.opacity = '0';
-            document.body.appendChild(tempArea);
-            tempArea.select();
-            try {
-                document.execCommand('copy');
-                const copyBtn = document.getElementById('copyOrderSlipBtn');
-                if (copyBtn) {
-                    copyBtn.innerHTML = '<i class="fa-solid fa-check mr-1.5 text-emerald-400"></i>Copied!';
-                    setTimeout(() => {
-                        copyBtn.innerHTML = '<i class="fa-regular fa-copy mr-1.5"></i>Copy Order Slip';
-                    }, 2200);
-                }
-            } catch (err) {
-                console.warn('Copy command failed:', err);
-            } finally {
-                document.body.removeChild(tempArea);
-            }
+            const modal = document.getElementById('merchModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
         async function submitMerchOrder(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('merchSubmitBtn');
-            const errorEl = document.getElementById('merchOrderError');
-            const syncBadge = document.getElementById('merchSyncBadge');
             const name = document.getElementById('orderFullName').value.trim();
             const studentId = document.getElementById('orderStudentId').value.trim();
             const ign = document.getElementById('orderCustomIgn').value.trim().toUpperCase();
-
-            errorEl.classList.add('hidden');
 
             const payload = {
                 timestamp: new Date().toISOString(),
@@ -1592,35 +1642,18 @@
                 studentIdContact: studentId
             };
 
-            lastFormattedOrderSlip = [
-                'UTS ESPORTS MERCH PRE-ORDER',
-                `Item: ${payload.item}`,
-                `Variant: ${payload.color} | Size ${payload.size}`,
-                `Price: ${payload.price}`,
-                `Custom IGN: ${payload.customIgn}`,
-                `Name: ${payload.fullName}`,
-                `ID / Contact: ${payload.studentIdContact}`
-            ].join('\n');
-
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> <span>Saving Order...</span>';
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> <span>Saving to Sheet...</span>';
 
             try {
-                // Save local order record in browser storage
-                const savedOrders = JSON.parse(localStorage.getItem('uts_merch_orders') || '[]');
-                savedOrders.push(payload);
-                localStorage.setItem('uts_merch_orders', JSON.stringify(savedOrders));
-
-                if (GOOGLE_SHEETS_CONFIG.merchOrderWebAppUrl) {
-                    await fetch(GOOGLE_SHEETS_CONFIG.merchOrderWebAppUrl, {
+                if (MERCH_ORDER_SHEET_URL) {
+                    await fetch(MERCH_ORDER_SHEET_URL, {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
-                    if (syncBadge) syncBadge.innerText = 'SYNCED TO GOOGLE SHEET';
                 } else {
-                    if (syncBadge) syncBadge.innerText = 'RESERVATION RECORDED // COPY SLIP';
                     await new Promise(r => setTimeout(r, 350));
                 }
 
@@ -1631,7 +1664,7 @@
                 e.target.reset();
             } catch (err) {
                 console.error('Order submission error:', err);
-                errorEl.classList.remove('hidden');
+                alert('Network error submitting order. Please try again.');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<span>Confirm Reservation</span>';
@@ -1639,11 +1672,24 @@
         }
 
         // ========================================================
-        // TRADING PLAYER CARD DATABASE, SHEET SYNC & 3D TILT LOGIC
+        // TRADING PLAYER CARD MODAL & 3D TILT LOGIC
+        // Syncs with 'Roster' tab if populated, while preserving defaults
         // ========================================================
         const playerDatabase = {
             'MLBB': [
-                // TEAM 1 (UTS SWANS PRIME)
+                // TEAM 1
+                {
+                    team: 'TEAM 1',
+                    handle: 'JINBEI',
+                    realName: 'Ahmad Jinbei',
+                    teamRole: 'UTS TEAM 1 // OFFLANER',
+                    role: 'EXP LANE',
+                    rarity: 'LEGENDARY',
+                    pwr: 325,
+                    stats: ['FIGHTER', 'LVL 9', 'WR 68%'],
+                    setCode: 'MLBB-T1-01',
+                    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'
+                },
                 {
                     team: 'TEAM 1',
                     handle: 'BELLA',
@@ -1652,33 +1698,21 @@
                     role: 'MID LANE',
                     rarity: 'MYTHIC',
                     pwr: 350,
-                    stats: ['VALENTINA', 'WR 74%', 'MVP 12x'],
-                    setCode: 'MLBB-T1-01',
+                    stats: ['MAGE', 'LVL 10', 'MVP 12x'],
+                    setCode: 'MLBB-T1-02',
                     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop'
                 },
                 {
                     team: 'TEAM 1',
                     handle: 'KIOZ',
-                    realName: 'Wan Amiruddin Bin Wan Shadon',
-                    teamRole: 'UTS TEAM 1 // SHOTCALLER',
+                    realName: 'Wan Amiruddin',
+                    teamRole: 'UTS TEAM 1 // ROAMER',
                     role: 'ROAMER',
                     rarity: 'LEGENDARY',
-                    pwr: 335,
-                    stats: ['TIGREAL', 'KP 81%', 'SET 142'],
-                    setCode: 'MLBB-T1-02',
-                    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'
-                },
-                {
-                    team: 'TEAM 1',
-                    handle: 'JINBEI',
-                    realName: 'Ahmad Syahir',
-                    teamRole: 'UTS TEAM 1 // OFFLANER',
-                    role: 'EXP LANE',
-                    rarity: 'LEGENDARY',
-                    pwr: 325,
-                    stats: ['TERIZLA', 'WR 71%', 'SOLO 16x'],
+                    pwr: 330,
+                    stats: ['TANK', 'LVL 9', 'ASSIST 142'],
                     setCode: 'MLBB-T1-03',
-                    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop'
+                    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop'
                 },
                 {
                     team: 'TEAM 1',
@@ -1688,9 +1722,9 @@
                     role: 'JUNGLER',
                     rarity: 'MYTHIC',
                     pwr: 345,
-                    stats: ['LING', 'RETRI 94%', 'KDA 7.8'],
+                    stats: ['ASSASSIN', 'LVL 10', 'RETRI 94%'],
                     setCode: 'MLBB-T1-04',
-                    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop'
+                    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop'
                 },
                 {
                     team: 'TEAM 1',
@@ -1699,12 +1733,12 @@
                     teamRole: 'UTS TEAM 1 // MARKSMAN',
                     role: 'GOLD LANE',
                     rarity: 'LEGENDARY',
-                    pwr: 330,
-                    stats: ['CLAUDE', 'GPM 840', 'DMG 36%'],
+                    pwr: 335,
+                    stats: ['CARRY', 'LVL 9', 'GPM 840'],
                     setCode: 'MLBB-T1-05',
-                    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop'
+                    image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=800&auto=format&fit=crop'
                 },
-                // TEAM 2 (UTS SWANS ACADEMY)
+                // TEAM 2
                 {
                     team: 'TEAM 2',
                     handle: 'EFRAIM',
@@ -1713,19 +1747,19 @@
                     role: 'JUNGLER',
                     rarity: 'LEGENDARY',
                     pwr: 315,
-                    stats: ['FREDERINN', 'TURTLE 82%', 'KDA 6.9'],
+                    stats: ['FIGHTER', 'LVL 9', 'TURTLE 82%'],
                     setCode: 'MLBB-T2-01',
-                    image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=800&auto=format&fit=crop'
+                    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop'
                 },
                 {
                     team: 'TEAM 2',
                     handle: 'ELLYRA',
-                    realName: 'Nurul Khalisah Binti Shukeri',
+                    realName: 'Nurul Khalisah',
                     teamRole: 'UTS TEAM 2 // MAGE',
                     role: 'MID LANE',
                     rarity: 'EPIC',
-                    pwr: 300,
-                    stats: ['NOVARIA', 'WR 68%', 'KDA 6.4'],
+                    pwr: 295,
+                    stats: ['BURST', 'LVL 8', 'KDA 6.4'],
                     setCode: 'MLBB-T2-02',
                     image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop'
                 },
@@ -1737,7 +1771,7 @@
                     role: 'EXP LANE',
                     rarity: 'LEGENDARY',
                     pwr: 305,
-                    stats: ['YU ZHONG', 'WR 70%', 'SOLO 19x'],
+                    stats: ['SUSTAIN', 'LVL 8', 'SOLO 19x'],
                     setCode: 'MLBB-T2-03',
                     image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=800&auto=format&fit=crop'
                 },
@@ -1748,8 +1782,8 @@
                     teamRole: 'UTS TEAM 2 // CARRY',
                     role: 'GOLD LANE',
                     rarity: 'EPIC',
-                    pwr: 295,
-                    stats: ['BEATRIX', 'GPM 795', 'DMG 34%'],
+                    pwr: 290,
+                    stats: ['SNIPE', 'LVL 8', 'DMG 34%'],
                     setCode: 'MLBB-T2-04',
                     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'
                 },
@@ -1760,10 +1794,10 @@
                     teamRole: 'UTS TEAM 2 // SUPPORT',
                     role: 'ROAMER',
                     rarity: 'EPIC',
-                    pwr: 290,
-                    stats: ['MATHILDA', 'KP 79%', 'SET 110'],
+                    pwr: 285,
+                    stats: ['INITIATE', 'LVL 8', 'SET 110'],
                     setCode: 'MLBB-T2-05',
-                    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop'
+                    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop'
                 }
             ],
             'PUBG': [
@@ -1773,115 +1807,166 @@
                     teamRole: 'UTS ESPORTS // IGL',
                     role: 'SNIPER',
                     rarity: 'LEGENDARY',
-                    pwr: 325,
-                    stats: ['AMR 50', 'AVG DMG 610', 'WWCD 14x'],
+                    pwr: 315,
+                    stats: ['AMR 50', 'LVL 9', 'WWCD 14x'],
                     setCode: 'PUBG-UTS-01',
                     image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop'
                 },
                 {
                     handle: 'PORORO',
                     realName: 'Rowina Anak Suzilla',
-                    teamRole: 'UTS ESPORTS // ENTRY',
+                    teamRole: 'UTS ESPORTS // ASSAULTER',
                     role: 'FRAGGER',
                     rarity: 'MYTHIC',
                     pwr: 340,
-                    stats: ['M416', 'K/D 5.2', 'MVP 6x'],
+                    stats: ['M416', 'LVL 10', 'K/D 5.2'],
                     setCode: 'PUBG-UTS-02',
                     image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop'
                 },
                 {
-                    handle: 'REAPER',
+                    handle: 'RAVEN',
                     realName: 'Darren Bong',
-                    teamRole: 'UTS ESPORTS // SCOUT',
-                    role: 'SUPPORT',
-                    rarity: 'LEGENDARY',
-                    pwr: 315,
-                    stats: ['MINI14', 'SURV 24M', 'CLUTCH 9x'],
-                    setCode: 'PUBG-UTS-03',
-                    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop'
-                },
-                {
-                    handle: 'VORTEX',
-                    realName: 'Hafizul Azman',
-                    teamRole: 'UTS ESPORTS // ASSAULTER',
-                    role: 'FRAGGER',
+                    teamRole: 'UTS ESPORTS // ENTRY',
+                    role: 'RUSHER',
                     rarity: 'LEGENDARY',
                     pwr: 320,
-                    stats: ['AKM', 'K/D 4.6', 'KNOCKS 98'],
-                    setCode: 'PUBG-UTS-04',
+                    stats: ['DBS', 'LVL 9', 'AVG DMG 690'],
+                    setCode: 'PUBG-UTS-03',
                     image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=800&auto=format&fit=crop'
+                },
+                {
+                    handle: 'LYNX',
+                    realName: 'Hafiz Zulkifli',
+                    teamRole: 'UTS ESPORTS // SCOUT',
+                    role: 'SUPPORT',
+                    rarity: 'EPIC',
+                    pwr: 305,
+                    stats: ['MINI14', 'LVL 8', 'REVIVE 42'],
+                    setCode: 'PUBG-UTS-04',
+                    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop'
                 }
             ],
             'VALORANT': [
                 {
                     handle: 'ZAO HEVNAVIK',
-                    realName: 'Mohamad Riezayd Aliff',
+                    realName: 'Mohamad Riezayd',
                     teamRole: 'UTS ESPORTS // ENTRY',
                     role: 'DUELIST',
                     rarity: 'IMMORTAL',
                     pwr: 360,
-                    stats: ['JETT', 'ACS 268', 'HS 48%'],
+                    stats: ['JETT', 'LVL 12', 'HS 48%'],
                     setCode: 'VAL-UTS-01',
                     image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=800&auto=format&fit=crop'
                 },
                 {
                     handle: 'ISERAPPP',
                     realName: 'Muhamad Aqil Isyraf',
-                    teamRole: 'UTS ESPORTS // IGL',
-                    role: 'INITIATOR',
+                    teamRole: 'UTS ESPORTS // CAPTAIN',
+                    role: 'CONTROLLER',
                     rarity: 'RADIANT',
                     pwr: 380,
-                    stats: ['SOVA', 'KAST 78%', 'CLUTCH 18x'],
+                    stats: ['OMEN', 'LVL 15', 'CLUTCH 18x'],
                     setCode: 'VAL-UTS-02',
                     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop'
                 },
                 {
-                    handle: 'SHADE',
-                    realName: 'Kevin Ling',
-                    teamRole: 'UTS ESPORTS // SMOKES',
-                    role: 'CONTROLLER',
+                    handle: 'KAIRO',
+                    realName: 'Joshua Ling',
+                    teamRole: 'UTS ESPORTS // RECON',
+                    role: 'INITIATOR',
                     rarity: 'IMMORTAL',
                     pwr: 350,
-                    stats: ['OMEN', 'K/D 1.32', 'ASSIST 210'],
+                    stats: ['SOVA', 'LVL 11', 'ACS 248'],
                     setCode: 'VAL-UTS-03',
                     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'
                 },
                 {
-                    handle: 'CYPHERX',
-                    realName: 'Aina Sofea',
+                    handle: 'VALKYRIE',
+                    realName: 'Natalie Chua',
                     teamRole: 'UTS ESPORTS // ANCHOR',
                     role: 'SENTINEL',
-                    rarity: 'IMMORTAL',
-                    pwr: 345,
-                    stats: ['KILLJOY', 'FIRST BLOOD 19%', 'WR 72%'],
+                    rarity: 'ASCENDANT',
+                    pwr: 335,
+                    stats: ['KILLJOY', 'LVL 10', 'KAST 78%'],
                     setCode: 'VAL-UTS-04',
                     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop'
                 }
             ]
         };
 
+        async function fetchGoogleSheetRoster() {
+            try {
+                const rows = await fetchSheetRows('Roster');
+                const grouped = {};
+
+                rows.forEach(r => {
+                    const c = r.c;
+                    if (c && c[0] && c[0].v && c[2] && c[2].v) {
+                        const rawDiv = String(c[0].v).trim();
+                        if (rawDiv.toLowerCase() === 'division') return;
+
+                        const divKey = normalizeDivisionKey(rawDiv);
+                        if (!grouped[divKey]) grouped[divKey] = [];
+
+                        grouped[divKey].push({
+                            team: (c[1] && c[1].v) ? String(c[1].v).trim().toUpperCase() : '',
+                            handle: String(c[2].v).trim(),
+                            realName: (c[3] && c[3].v) ? String(c[3].v).trim() : '',
+                            teamRole: (c[4] && c[4].v) ? String(c[4].v).trim() : `UTS ${divKey}`,
+                            role: (c[5] && c[5].v) ? String(c[5].v).trim().toUpperCase() : 'PLAYER',
+                            rarity: (c[6] && c[6].v) ? String(c[6].v).trim().toUpperCase() : 'LEGENDARY',
+                            pwr: (c[7] && c[7].v) ? Number(c[7].v) || 300 : 300,
+                            stats: [
+                                (c[8] && c[8].v) ? String(c[8].v).trim() : 'UTS',
+                                (c[9] && c[9].v) ? String(c[9].v).trim() : 'LVL 9',
+                                (c[10] && c[10].v) ? String(c[10].v).trim() : 'ACTIVE'
+                            ],
+                            setCode: (c[11] && c[11].v) ? String(c[11].v).trim() : `${divKey}-UTS`,
+                            image: (c[12] && c[12].v) ? fixUrl(c[12].v, 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop') : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'
+                        });
+                    }
+                });
+
+                // Only replace a division if valid player rows were retrieved from the Roster tab
+                Object.keys(grouped).forEach(key => {
+                    if (grouped[key].length > 0) {
+                        playerDatabase[key] = grouped[key];
+                    }
+                });
+            } catch (err) {
+                console.warn('Using built-in player roster data:', err);
+            }
+        }
+
         let currentModalGame = 'MLBB';
         let currentTeamFilter = 'ALL';
         let currentFilter = 'ALL';
 
         function openPlayerModal(gameKey) {
-            currentModalGame = gameKey;
+            const normalizedKey = normalizeDivisionKey(gameKey);
+            currentModalGame = normalizedKey;
             currentTeamFilter = 'ALL';
             currentFilter = 'ALL';
             
-            document.getElementById('modalTitle').innerText = `${gameKey} ROSTER`;
+            const displayTitle = normalizedKey === 'PUBG' ? 'PUBG MOBILE' : normalizedKey;
+            document.getElementById('modalTitle').innerText = `${displayTitle} ROSTER`;
             document.getElementById('modalSubTitle').innerText = `UTS ESPORTS DIVISION // TRADING CARDS`;
             
-            setupFilters(gameKey);
+            setupFilters(normalizedKey);
             renderPlayerCards();
             
-            document.getElementById('playerModal').classList.remove('hidden');
+            const modal = document.getElementById('playerModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
             gyroBase = null;
-            updateCarousel();
+
+            requestAnimationFrame(() => updateCarousel());
         }
 
         function closePlayerModal() {
-            document.getElementById('playerModal').classList.add('hidden');
+            const modal = document.getElementById('playerModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
         function setupFilters(gameKey) {
@@ -1898,6 +1983,7 @@
                 const teamOptions = ['ALL', ...teams];
                 teamOptions.forEach(teamName => {
                     const tBtn = document.createElement('button');
+                    tBtn.type = 'button';
                     const isSelected = teamName === currentTeamFilter;
                     tBtn.className = `px-4 py-1.5 rounded text-xs font-mono font-bold uppercase tracking-wider transition-all border cursor-pointer ${isSelected ? 'bg-brand-primary text-white border-brand-accent shadow-[0_0_12px_rgba(37,99,235,0.6)]' : 'bg-brand-card/80 text-gray-300 border-gray-700 hover:border-brand-primary'}`;
                     tBtn.innerText = teamName === 'ALL' ? 'ALL TEAMS' : teamName;
@@ -1918,6 +2004,7 @@
             
             roles.forEach(role => {
                 const btn = document.createElement('button');
+                btn.type = 'button';
                 btn.className = `px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase transition-all border cursor-pointer ${role === currentFilter ? 'bg-yellow-500 text-black border-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 'bg-brand-card text-gray-300 border-gray-700 hover:border-yellow-500'}`;
                 btn.innerText = role;
                 btn.onclick = () => {
@@ -1945,6 +2032,21 @@
                 return matchesTeam && matchesRole;
             });
 
+            if (players.length === 0) {
+                grid.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-center px-4">
+                        <i class="fa-solid fa-users-slash text-4xl text-brand-primary/60 mb-3"></i>
+                        <p class="font-esports text-xl text-white uppercase">No Players Found</p>
+                        <p class="text-gray-400 text-xs font-mono mt-1">Select another filter or add players to your Roster sheet tab.</p>
+                    </div>
+                `;
+                document.getElementById('carouselDots').innerHTML = '';
+                document.getElementById('carouselPrev').style.display = 'none';
+                document.getElementById('carouselNext').style.display = 'none';
+                document.getElementById('carouselCounter').innerText = '00 / 00';
+                return;
+            }
+
             players.forEach((p, i) => {
                 const wrapper = document.createElement('div');
                 wrapper.className = 'player-card-wrapper';
@@ -1956,13 +2058,13 @@
                     <div class="player-card relative rounded-2xl p-5 overflow-hidden flex flex-col justify-between h-[450px] cursor-pointer" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
                         <div class="card-shine"></div>
                         
-                        <img src="${p.image}" alt="${p.handle}" class="absolute inset-0 w-full h-full object-cover opacity-45 mix-blend-luminosity">
+                        <img src="${p.image}" alt="${p.handle}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop';" class="absolute inset-0 w-full h-full object-cover opacity-45 mix-blend-luminosity">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
 
                         <div class="relative z-10 flex justify-between items-start">
                             <div>
                                 <span class="text-[11px] font-mono tracking-widest text-yellow-400 font-bold block uppercase">${p.teamRole}</span>
-                                <h2 class="font-esports text-3xl sm:text-4xl font-bold text-yellow-300 tracking-wide uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">${p.handle}</h2>
+                                <h2 class="font-esports text-3xl sm:text-4xl font-extrabold text-yellow-300 tracking-wide uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">${p.handle}</h2>
                             </div>
                             <div class="text-right">
                                 <span class="font-price text-3xl font-extrabold text-white block leading-none drop-shadow">${p.pwr}</span>
@@ -1972,7 +2074,7 @@
 
                         <div class="relative z-10 space-y-3">
                             <div class="inline-block border-b-2 border-yellow-400 pb-1">
-                                <span class="font-esports text-xl font-bold text-white tracking-widest uppercase">${p.realName || 'LEADERBOARD FIXTURE'}</span>
+                                <span class="font-esports text-xl font-bold text-white tracking-widest uppercase">${p.realName || 'UTS ROSTER'}</span>
                             </div>
 
                             <div>
@@ -2030,7 +2132,8 @@
 
         function updateCarousel() {
             const grid = document.getElementById('playerCardsGrid');
-            const spacing = grid.clientWidth < 640 ? 150 : 230;
+            const width = grid.clientWidth || window.innerWidth;
+            const spacing = width < 640 ? 150 : 230;
             const n = carouselWrappers.length;
 
             carouselWrappers.forEach((w, i) => {
@@ -2056,92 +2159,131 @@
         }
 
         // ========================================================
-        // GOOGLE SHEETS DYNAMIC SYNC (ACTIVITIES, ACHIEVEMENTS, ROSTER)
+        // GYRO CONTROL (mobile)
         // ========================================================
-        function fixUrl(url, defaultFallback = '#') {
-            if (!url) return defaultFallback;
-            let clean = url.trim();
-            if (!clean) return defaultFallback;
-            if (clean.startsWith('http://') || clean.startsWith('https://')) return clean;
-            if (clean.startsWith('photo-')) return `https://images.unsplash.com/${clean}`;
-            return `https://${clean}`;
+        const GYRO_MAX_TILT = 14;
+        const GYRO_SENSITIVITY = 0.6;
+        let gyroOn = false;
+        let gyroBase = null;
+
+        function gyroSupported() {
+            return 'DeviceOrientationEvent' in window && window.matchMedia('(pointer: coarse)').matches;
         }
 
-        async function fetchSheetGvizRows(sheetTabName = '') {
-            const tabParam = sheetTabName ? `&sheet=${encodeURIComponent(sheetTabName)}` : '';
-            const gvizUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEETS_CONFIG.sheetId}/gviz/tq?tqx=out:json${tabParam}`;
-            const res = await fetch(gvizUrl);
-            const text = await res.text();
-            const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
-            if (!jsonMatch || !jsonMatch[1]) return [];
-            const data = JSON.parse(jsonMatch[1]);
-            if (data.status === 'error' || !data.table || !Array.isArray(data.table.rows)) return [];
-            return data.table.rows;
+        function setGyroUI() {
+            const btn = document.getElementById('gyroBtn');
+            const label = document.getElementById('gyroLabel');
+            if (!btn) return;
+            label.innerText = gyroOn ? 'Gyro On' : 'Enable Gyro';
+            btn.className = `px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider border transition-all cursor-pointer ${gyroOn ? 'bg-yellow-500 text-black border-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.5)]' : 'bg-brand-card text-gray-300 border-gray-700 hover:border-yellow-500'}`;
         }
 
-        async function fetchGoogleSheetAchievements() {
+        async function toggleGyro() {
+            if (gyroOn) {
+                window.removeEventListener('deviceorientation', onGyro);
+                gyroOn = false;
+                setGyroUI();
+                const active = carouselWrappers[carouselIndex];
+                if (active) {
+                    const c = active.querySelector('.player-card');
+                    resetTilt(c);
+                    const sh = c.querySelector('.card-shine');
+                    if (sh) sh.style.opacity = '';
+                }
+                return;
+            }
             try {
-                const rows = await fetchSheetGvizRows(GOOGLE_SHEETS_CONFIG.achievementsTab);
-                const parsed = [];
-                rows.forEach(r => {
-                    const c = r.c;
-                    if (c && c[0] && c[0].v && c[4] && c[4].v) {
-                        const placement = String(c[0].v).trim();
-                        if (placement.toLowerCase() === 'placement') return;
-                        parsed.push({
-                            placement: placement,
-                            tier: (c[1] && c[1].v) ? String(c[1].v).trim().toLowerCase() : 'blue',
-                            division: (c[2] && c[2].v) ? String(c[2].v).trim().toUpperCase() : 'MLBB',
-                            year: (c[3] && c[3].v) ? String(c[3].v).trim() : '2026',
-                            tournament: String(c[4].v).trim(),
-                            squad: (c[5] && c[5].v) ? String(c[5].v).trim() : 'UTS ESPORTS',
-                            description: (c[6] && c[6].v) ? String(c[6].v).trim() : ''
-                        });
-                    }
-                });
-                if (parsed.length > 0) {
-                    achievementsData = parsed;
-                    renderAchievements(activeAchievementFilter);
+                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    const res = await DeviceOrientationEvent.requestPermission();
+                    if (res !== 'granted') return;
                 }
             } catch (err) {
-                console.info('Using built-in UTS Achievements dataset.');
+                console.warn('Gyro permission error:', err);
+                return;
+            }
+            gyroBase = null;
+            window.addEventListener('deviceorientation', onGyro);
+            gyroOn = true;
+            setGyroUI();
+        }
+
+        function onGyro(e) {
+            if (document.getElementById('playerModal').classList.contains('hidden')) return;
+            if (e.gamma === null || e.beta === null) return;
+
+            if (!gyroBase) gyroBase = { gamma: e.gamma, beta: e.beta };
+            const g = e.gamma - gyroBase.gamma;
+            const b = e.beta - gyroBase.beta;
+
+            const clamp = (v, m) => Math.max(-m, Math.min(m, v));
+            const rotY = clamp(g * GYRO_SENSITIVITY, GYRO_MAX_TILT);
+            const rotX = clamp(-b * GYRO_SENSITIVITY, GYRO_MAX_TILT);
+
+            const active = carouselWrappers[carouselIndex];
+            const card = active && active.querySelector('.player-card');
+            if (card) {
+                card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.03, 1.03, 1.03)`;
+                const shine = card.querySelector('.card-shine');
+                if (shine) shine.style.opacity = Math.min(1, (Math.abs(rotX) + Math.abs(rotY)) / GYRO_MAX_TILT);
             }
         }
 
-        async function fetchGoogleSheetRoster() {
-            try {
-                const rows = await fetchSheetGvizRows(GOOGLE_SHEETS_CONFIG.rosterTab);
-                const grouped = {};
-                rows.forEach(r => {
-                    const c = r.c;
-                    if (c && c[0] && c[0].v && c[2] && c[2].v) {
-                        const gameKey = String(c[0].v).trim().toUpperCase();
-                        if (gameKey === 'GAME' || gameKey === 'DIVISION') return;
-                        if (!grouped[gameKey]) grouped[gameKey] = [];
-                        grouped[gameKey].push({
-                            team: (c[1] && c[1].v) ? String(c[1].v).trim().toUpperCase() : '',
-                            handle: String(c[2].v).trim(),
-                            realName: (c[3] && c[3].v) ? String(c[3].v).trim() : '',
-                            teamRole: (c[4] && c[4].v) ? String(c[4].v).trim().toUpperCase() : 'UTS ESPORTS',
-                            role: (c[5] && c[5].v) ? String(c[5].v).trim().toUpperCase() : 'PLAYER',
-                            rarity: (c[6] && c[6].v) ? String(c[6].v).trim().toUpperCase() : 'LEGENDARY',
-                            pwr: (c[7] && c[7].v) ? Number(c[7].v) || 300 : 300,
-                            stats: [c[8]?.v, c[9]?.v, c[10]?.v].filter(Boolean).map(v => String(v).trim().toUpperCase()),
-                            setCode: (c[11] && c[11].v) ? String(c[11].v).trim().toUpperCase() : `${gameKey}-UTS`,
-                            image: fixUrl(c[12] ? String(c[12].v) : '', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop')
-                        });
-                    }
-                });
-                Object.keys(grouped).forEach(gameKey => {
-                    if (grouped[gameKey].length > 0) {
-                        playerDatabase[gameKey] = grouped[gameKey];
-                    }
-                });
-            } catch (err) {
-                console.info('Using built-in UTS Roster dataset.');
+        function initGyroUI() {
+            const btn = document.getElementById('gyroBtn');
+            if (btn && gyroSupported()) btn.classList.remove('hidden');
+            setGyroUI();
+        }
+        initGyroUI();
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('merchModal').classList.contains('hidden') && e.key === 'Escape') {
+                closeMerchModal();
+                return;
             }
+            if (document.getElementById('playerModal').classList.contains('hidden')) return;
+            if (e.key === 'ArrowLeft') carouselStep(-1);
+            else if (e.key === 'ArrowRight') carouselStep(1);
+            else if (e.key === 'Escape') closePlayerModal();
+        });
+
+        (function setupCarouselSwipe() {
+            const el = document.getElementById('playerCardsGrid');
+            let startX = null;
+            el.addEventListener('pointerdown', e => { startX = e.clientX; });
+            el.addEventListener('pointerup', e => {
+                if (startX === null) return;
+                const dx = e.clientX - startX;
+                startX = null;
+                if (Math.abs(dx) > 50) carouselStep(dx < 0 ? 1 : -1);
+            });
+            el.addEventListener('pointerleave', () => { startX = null; });
+        })();
+
+        window.addEventListener('resize', () => { if (carouselWrappers.length) updateCarousel(); });
+
+        function handleTilt(e, card) {
+            const wrap = card.closest('.player-card-wrapper');
+            if (wrap && !wrap.classList.contains('is-active')) return;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -12;
+            const rotateY = ((x - centerX) / centerX) * 12;
+
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
         }
 
+        function resetTilt(card) {
+            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        }
+
+        // ========================================================
+        // GOOGLE SHEETS DYNAMIC ACTIVITIES FETCH SYSTEM
+        // ========================================================
         async function fetchGoogleSheetActivities() {
             const container = document.getElementById('activities-container');
             if (!container) return;
@@ -2149,7 +2291,7 @@
             let activities = [];
 
             try {
-                const rows = await fetchSheetGvizRows();
+                const rows = await fetchSheetRows('');
                 rows.forEach(r => {
                     const c = r.c;
                     if (c && c[0] && c[0].v) {
@@ -2170,9 +2312,9 @@
                 console.warn('GViz fetch failed, trying CSV fallback...', err);
             }
 
-            if (activities.length === 0 && GOOGLE_SHEETS_CONFIG.activitiesCsvUrl) {
+            if (activities.length === 0 && GOOGLE_SHEET_CSV_URL) {
                 try {
-                    const res = await fetch(GOOGLE_SHEETS_CONFIG.activitiesCsvUrl);
+                    const res = await fetch(GOOGLE_SHEET_CSV_URL);
                     const csvText = await res.text();
                     const lines = csvText.split(/\r?\n/).map(row => row.trim()).filter(row => row.length > 0);
                     for (let i = 1; i < lines.length; i++) {
@@ -2207,7 +2349,7 @@
                         
                         <div class="relative z-20">
                             <p class="text-gray-300 text-xs sm:text-sm font-medium mb-1 drop-shadow">${act.description || act.category}</p>
-                            <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-tight leading-none drop-shadow-md">${act.title}</h3>
+                            <h3 class="font-esports text-3xl sm:text-4xl md:text-5xl font-extrabold text-white uppercase tracking-tight leading-none drop-shadow-md">${act.title}</h3>
                         </div>
 
                         <div class="relative z-20 flex flex-wrap sm:flex-nowrap justify-between items-end gap-3">
@@ -2224,9 +2366,9 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             renderAchievements('ALL');
-            fetchGoogleSheetActivities();
             fetchGoogleSheetAchievements();
             fetchGoogleSheetRoster();
+            fetchGoogleSheetActivities();
         });
     </script>
     <script>
